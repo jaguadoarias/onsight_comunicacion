@@ -1,0 +1,234 @@
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Link } from "react-scroll";
+import onsightLogo from "../images/onsight_comunicacion.svg";
+import "../styles/variables.css";
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+
+const Nav = styled.nav`
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem calc((100vw - var(--layout-max-width)) / 2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: ${({ scrollNav }) => (scrollNav ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0)")};
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+  z-index: 999;
+  box-sizing: border-box;
+`;
+
+// Update MobileMenu to match the new header style
+const MobileMenu = styled.div`
+  display: none;
+
+  @media screen and (max-width: 1024px) {
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    flex-direction: column;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: var(--spacing-md);
+    transition: all 0.3s ease;
+  }
+`;
+
+const MobileLink = styled(Link)`
+  color: #fff;
+  display: block;
+  padding: var(--spacing-sm);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  width: 100%;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+`;
+
+const NavLink = styled(Link)`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: var(--font-size-medium);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &.active {
+    color: var(--color-primary);
+  }
+`;
+
+const LogoImage = styled.img`
+  height: 40px;
+  width: auto;
+`;
+
+const Logo = styled(Link)`
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: none;
+`;
+
+const MobileIcon = styled.div`
+  display: none;
+
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-right: var(--spacing-md);
+    cursor: pointer;
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--color-primary-hover);
+    }
+  }
+`;
+
+const NavMenu = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+const ProgressLine = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--color-primary);
+  width: ${({ progress }) => `${progress}%`};
+  transition: width 0.1s ease;
+`;
+
+const Navbar = () => {
+  const [scrollNav, setScrollNav] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const changeNav = () => {
+    if (window.scrollY >= 80) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
+    }
+
+    // Calculate scroll progress
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    setScrollProgress(scrolled);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeNav);
+    return () => {
+      window.removeEventListener("scroll", changeNav);
+    };
+  }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <Nav scrollNav={scrollNav}>
+      <Logo to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+        <LogoImage src={onsightLogo} alt="Logotipo Onsight Comunicación" />
+      </Logo>
+      <ProgressLine progress={scrollProgress} />
+      <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX /> : <HiOutlineMenu />}</MobileIcon>
+      <NavMenu>
+        <NavLink to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+          Home
+        </NavLink>
+        <NavLink to="services" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+          Servicios
+        </NavLink>
+        <NavLink to="portfolio" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+          Portfolio
+        </NavLink>
+        <NavLink to="contact" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+          Contacto
+        </NavLink>
+      </NavMenu>
+      <MobileMenu isOpen={isOpen}>
+        <MobileLink
+          to="home"
+          smooth={true}
+          duration={500}
+          spy={true}
+          exact="true"
+          offset={-80}
+          onClick={toggleMenu}
+        >
+          Home
+        </MobileLink>
+        <MobileLink
+          to="services"
+          smooth={true}
+          duration={500}
+          spy={true}
+          exact="true"
+          offset={-80}
+          onClick={toggleMenu}
+        >
+          Servicios
+        </MobileLink>
+        <MobileLink
+          to="portfolio"
+          smooth={true}
+          duration={500}
+          spy={true}
+          exact="true"
+          offset={-80}
+          onClick={toggleMenu}
+        >
+          Portfolio
+        </MobileLink>
+        <MobileLink
+          to="contact"
+          smooth={true}
+          duration={500}
+          spy={true}
+          exact="true"
+          offset={-80}
+          onClick={toggleMenu}
+        >
+          Contacto
+        </MobileLink>
+      </MobileMenu>
+    </Nav>
+  );
+};
+
+export default Navbar;

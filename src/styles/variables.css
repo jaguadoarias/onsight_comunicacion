@@ -1,0 +1,50 @@
+:root {
+  /* Colors */
+  --color-primary: #bd1d00;
+  --color-primary-hover: #FF3333;
+  --color-primary-active: #FF6666;
+  --color-bg-transparent: transparent;
+  --color-bg-dark: rgba(0, 0, 0, 0.85);
+  --color-bg-darker: rgba(0, 0, 0, 0.95);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+
+  /* Font Sizes */
+  --font-size-small: 0.875rem;
+  --font-size-regular: 1rem;
+  --font-size-medium: 1.3rem;
+  --font-size-large: 1.5rem;
+  --font-size-xlarge: 1.8rem;
+
+  /* Layout */
+  --layout-max-width: 1200px;
+  --header-height: 80px;
+
+  /* Carousel Custom Styles */
+  .carousel-container {
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .custom-dot-list-style {
+    margin-top: var(--spacing-md);
+  }
+
+  .custom-dot-list-style button {
+    border: 2px solid var(--color-primary);
+  }
+
+  .react-multi-carousel-dot--active button {
+    background: var(--color-primary);
+  }
+  
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
