@@ -127,19 +127,19 @@ const CardText = styled.p`
   opacity: 0.9;
 `;
 
-const CTA = styled.a`
-  display: inline-block;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--color-primary);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s ease;
+// const CTA = styled.a`
+//   display: inline-block;
+//   padding: var(--spacing-sm) var(--spacing-md);
+//   background: var(--color-primary);
+//   color: white;
+//   text-decoration: none;
+//   border-radius: 4px;
+//   transition: background 0.3s ease;
 
-  &:hover {
-    background: var(--color-primary-hover);
-  }
-`;
+//   &:hover {
+//     background: var(--color-primary-hover);
+//   }
+// `;
 
 const Services = () => {
   const services = [

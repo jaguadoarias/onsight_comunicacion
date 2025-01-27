@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -63,31 +63,31 @@ const VideoFrame = styled.iframe`
 `;
 
 const Portfolio = () => {
-  const [playingVideo, setPlayingVideo] = useState(null);
+  // const [playingVideo, setPlayingVideo] = useState(null);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1600 },
-      items: 1
+      items: 1,
     },
     desktop: {
       breakpoint: { max: 1600, min: 1024 },
-      items: 1
+      items: 1,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 1
+      items: 1,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
+      items: 1,
+    },
   };
 
   const videos = [
     "5Y5Q3mtucsU",
     "Bw_jBZ-Ah04",
     "wt1d16nCrMw",
-    "noPTyfGWToM"
+    "noPTyfGWToM",
     // Add more video IDs here
   ];
   return (
@@ -109,7 +109,7 @@ const Portfolio = () => {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
-          beforeChange={() => setPlayingVideo(null)}
+          // beforeChange={() => setPlayingVideo(null)}
         >
           {videos.map((videoId, index) => (
             <VideoWrapper key={index}>
