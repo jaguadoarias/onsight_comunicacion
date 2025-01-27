@@ -154,7 +154,7 @@ const Contact = () => {
     <ContactSection id="contact">
       <ContactContainer>
         <Title>Contacto</Title>
-        <Form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <Form name="contact" netlify method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
             <label>
