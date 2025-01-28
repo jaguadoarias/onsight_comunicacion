@@ -24,6 +24,24 @@ const Nav = styled.nav`
 `;
 
 // Update MobileMenu to match the new header style
+// Add new Overlay component after Nav styled component
+const Overlay = styled.div`
+  display: none;
+  @media screen and (max-width: 1024px) {
+    display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 998;
+  }
+`;
+
+// Update MobileMenu component
 const MobileMenu = styled.div`
   display: none;
 
@@ -34,11 +52,9 @@ const MobileMenu = styled.div`
     top: var(--header-height);
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     padding: var(--spacing-md);
     transition: all 0.3s ease;
+    z-index: 999;
   }
 `;
 
@@ -156,78 +172,92 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <Nav scrollNav={scrollNav}>
-      <Logo to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-        <LogoImage src={onsightLogo} alt="Logotipo Onsight Comunicación" />
-      </Logo>
-      <ProgressLine progress={scrollProgress} />
-      <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX /> : <HiOutlineMenu />}</MobileIcon>
-      <NavMenu>
-        <NavLink to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-          Home
-        </NavLink>
-        <NavLink to="services" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-          Servicios
-        </NavLink>
-        <NavLink to="portfolio" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-          Portfolio
-        </NavLink>
-        <NavLink to="contact" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-          Contacto
-        </NavLink>
-      </NavMenu>
-      <MobileMenu isOpen={isOpen}>
-        <MobileLink
-          to="home"
-          smooth={true}
-          duration={500}
-          spy={true}
-          exact="true"
-          offset={-80}
-          onClick={toggleMenu}
-        >
-          Home
-        </MobileLink>
-        <MobileLink
-          to="services"
-          smooth={true}
-          duration={500}
-          spy={true}
-          exact="true"
-          offset={-80}
-          onClick={toggleMenu}
-        >
-          Servicios
-        </MobileLink>
-        <MobileLink
-          to="portfolio"
-          smooth={true}
-          duration={500}
-          spy={true}
-          exact="true"
-          offset={-80}
-          onClick={toggleMenu}
-        >
-          Portfolio
-        </MobileLink>
-        <MobileLink
-          to="contact"
-          smooth={true}
-          duration={500}
-          spy={true}
-          exact="true"
-          offset={-80}
-          onClick={toggleMenu}
-        >
-          Contacto
-        </MobileLink>
-      </MobileMenu>
-    </Nav>
+    <>
+      <Overlay isOpen={isOpen} onClick={toggleMenu} />
+      <Nav scrollNav={scrollNav}>
+        <Logo to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+          <LogoImage src={onsightLogo} alt="Logotipo Onsight Comunicación" />
+        </Logo>
+        <ProgressLine progress={scrollProgress} />
+        <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX /> : <HiOutlineMenu />}</MobileIcon>
+        <NavMenu>
+          <NavLink to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+            Home
+          </NavLink>
+          <NavLink to="services" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+            Servicios
+          </NavLink>
+          <NavLink to="portfolio" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+            Portfolio
+          </NavLink>
+          <NavLink to="contact" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+            Contacto
+          </NavLink>
+        </NavMenu>
+        <MobileMenu isOpen={isOpen}>
+          <MobileLink
+            to="home"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+            onClick={toggleMenu}
+          >
+            Home
+          </MobileLink>
+          <MobileLink
+            to="services"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+            onClick={toggleMenu}
+          >
+            Servicios
+          </MobileLink>
+          <MobileLink
+            to="portfolio"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+            onClick={toggleMenu}
+          >
+            Portfolio
+          </MobileLink>
+          <MobileLink
+            to="contact"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+            onClick={toggleMenu}
+          >
+            Contacto
+          </MobileLink>
+        </MobileMenu>
+      </Nav>
+    </>
   );
 };
 
