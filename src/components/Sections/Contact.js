@@ -50,7 +50,16 @@ const Input = styled.input`
   &:focus + label,
   &:not(:placeholder-shown) + label {
     transform: translateY(-25px) scale(0.8);
-    color: var(--color-primary);
+    color: #dbdbdb;
+  }
+  &::placeholder {
+    opacity: 0;
+  }
+
+  &:focus ~ label,
+  &:not(:placeholder-shown) ~ label {
+    transform: translateX(-5px) translateY(-30px) scale(0.8);
+    color: #dbdbdb;
   }
 `;
 
@@ -77,6 +86,15 @@ const TextArea = styled.textarea`
   &:not(:placeholder-shown) + label {
     transform: translateY(-25px) scale(0.8);
     color: var(--color-primary);
+  }
+  &::placeholder {
+    opacity: 0;
+  }
+
+  &:focus ~ label,
+  &:not(:placeholder-shown) ~ label {
+    transform: translateX(-5px) translateY(-20px) scale(0.8);
+    color: #dbdbdb;
   }
 `;
 
@@ -123,6 +141,7 @@ const Label = styled.label`
   color: rgba(255, 255, 255, 0.6);
   transition: all 0.3s ease;
   pointer-events: none;
+  background: transparent;
 
   ${TextArea} ~ & {
     top: var(--spacing-md);
