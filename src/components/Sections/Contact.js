@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaPaperPlane } from "react-icons/fa";
 
@@ -149,12 +149,54 @@ const FormGroup = styled.div`
   margin-bottom: var(--spacing-lg);
 `;
 
+const SnackbarContainer = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: ${({ show }) => (show ? '1' : '0')};
+  transition: opacity 0.3s ease-in-out;
+`;
+
 const Contact = () => {
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      });
+      
+      form.reset();
+      setShowSnackbar(true);
+      setTimeout(() => setShowSnackbar(false), 3000);
+    } catch (error) {
+      console.error("Form submission error:", error);
+    }
+  };
+
   return (
     <ContactSection id="contact">
       <ContactContainer>
         <Title>Contacto</Title>
-        <Form name="contact" netlify method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <Form 
+          name="contact" 
+          method="POST" 
+          data-netlify="true"
+          onSubmit={handleSubmit}
+          netlify-honeypot="bot-field"
+        >
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
             <label>
@@ -177,6 +219,9 @@ const Contact = () => {
             <FaPaperPlane /> Enviar
           </Button>
         </Form>
+        <SnackbarContainer show={showSnackbar}>
+          ¡Mensaje enviado con éxito!
+        </SnackbarContainer>
       </ContactContainer>
     </ContactSection>
   );
