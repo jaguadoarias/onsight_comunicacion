@@ -83,6 +83,7 @@ const ServiceCard = styled.div`
   background-position: center;
   transition: all 0.3s ease;
   border: 1px solid #000;
+  grid-column: ${props => props.fullWidth ? '1 / -1' : 'auto'};
 
   &::before {
     content: "";
@@ -170,7 +171,15 @@ const Services = () => {
         "Deja constancia de todas tus actividades, sus protagonistas y utilízalo en redes para una mejor promoción de tus futuros eventos y acciones.",
       image: "/images/onsight_making-of.jpg",
       cta: "Get Started"
-    }
+    },
+    {
+      title: "Contenido para Infoproductores",
+      description:
+        "Crea 6 meses de contenido en 2 días.",
+      image: "/images/onsight_infoproductores.jpg",
+      cta: "Saber más"
+    },
+    
   ];
 
   return (
@@ -183,7 +192,11 @@ const Services = () => {
         </Description>
         <CardsGrid>
           {services.map((service, index) => (
-            <ServiceCard key={index} bgImage={service.image}>
+            <ServiceCard 
+              key={index} 
+              bgImage={service.image}
+              fullWidth={index === 0} // Make the first item take full width
+            >
               <CardContent>
                 <CardTitle>{service.title}</CardTitle>
                 <CardText>{service.description}</CardText>
