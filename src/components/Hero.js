@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
+import onsightLogo from "../images/onsight_comunicacion.svg";
 
 const HeroContainer = styled.div`
   background: #0c0c0c;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0;
@@ -116,7 +118,31 @@ const HeroCTA = styled(motion.button)`
   }
 `;
 
+const HeroLogo = styled(motion.div)`
+  z-index: 4;
+
+  img {
+    width: min(40vw, 240px); // Larger size
+    height: auto;
+  }
+`;
+
 const Hero = () => {
+  const [showLogo, setShowLogo] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowLogo(false);
+      } else {
+        setShowLogo(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <HeroContainer>
       <VideoBg>
@@ -128,6 +154,17 @@ const Hero = () => {
           allowFullScreen
         />
       </VideoBg>
+      <HeroLogo
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{
+          opacity: showLogo ? 1 : 0,
+          scale: showLogo ? 1 : 0.8,
+          y: showLogo ? 0 : -20
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        <img src={onsightLogo} alt="OnSight Logo" />
+      </HeroLogo>
       <HeroContent>
         <HeroH1
           initial={{ opacity: 0, y: -20 }}

@@ -129,7 +129,6 @@ const MobileIcon = styled.div`
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 24px;
 
   @media screen and (max-width: 1024px) {
     display: none;
@@ -144,6 +143,13 @@ const ProgressLine = styled.div`
   background: var(--color-primary);
   width: ${({ progress }) => `${progress}%`};
   transition: width 0.1s ease;
+`;
+
+// Add a styled component for the logo container with opacity transition
+const LogoContainer = styled.div`
+  opacity: ${({ scrollNav }) => (scrollNav ? 1 : 0)};
+  transform: translateY(${({ scrollNav }) => (scrollNav ? '0' : '-10px')});
+  transition: opacity 0.4s ease, transform 0.4s ease;
 `;
 
 const Navbar = () => {
@@ -191,12 +197,14 @@ const Navbar = () => {
     <>
       <Overlay isOpen={isOpen} onClick={toggleMenu} />
       <Nav scrollNav={scrollNav}>
-        <Logo to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-          <LogoImage src={onsightLogo} alt="Logotipo Onsight Comunicación" />
-        </Logo>
+        <LogoContainer scrollNav={scrollNav}>
+          <Logo to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+            <LogoImage src={onsightLogo} alt="Logotipo Onsight Comunicación" />
+          </Logo>
+        </LogoContainer>
         <ProgressLine progress={scrollProgress} />
         <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX /> : <HiOutlineMenu />}</MobileIcon>
-        <NavMenu>
+        <NavMenu scrollNav={scrollNav}>
           <NavLink to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
             Home
           </NavLink>
