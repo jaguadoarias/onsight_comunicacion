@@ -26,7 +26,6 @@ const VideoWrapper = styled.div`
   height: 600px;
   position: relative;
   cursor: pointer;
-  max-width: 1066px; /* 16:9 aspect ratio based on height */
 
   @media screen and (max-width: 1024px) {
     height: 450px;
