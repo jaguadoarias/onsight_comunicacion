@@ -48,7 +48,7 @@ const Description = styled.p`
   text-align: center;
   max-width: 800px;
   margin: 0 auto var(--spacing-xl);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-medium);
   opacity: 0.9;
   line-height: 1.6;
 `;
@@ -79,6 +79,7 @@ const VideoDescription = styled.div`
 const Portfolio = () => {
   const [videoDetails, setVideoDetails] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [videos, setVideos] = useState([]);
 
   const responsive = {
     superLargeDesktop: {
@@ -99,21 +100,13 @@ const Portfolio = () => {
     }
   };
 
-  // Wrap videos array in useMemo to prevent recreating on each render
-  const videos = useMemo(() => [
-    "5Y5Q3mtucsU",
-    "Bw_jBZ-Ah04",
-    "wt1d16nCrMw",
-    "noPTyfGWToM"
-    // Add more video IDs here
-  ], []);
+  // Channel ID for your YouTube channel
+  const channelId = useMemo(() => "UC60mDOEFsULNbKPtifA3H6Q", []);
 
   useEffect(() => {
-    const fetchVideoDetails = async () => {
+    const fetchLatestVideos = async () => {
       try {
-        // Use environment variable instead of hardcoded API key
         const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-        const videoIds = videos.join(",");
 
         if (!API_KEY) {
           console.error("YouTube API key is missing. Please check your environment variables.");
@@ -121,35 +114,59 @@ const Portfolio = () => {
           return;
         }
 
-        const response = await fetch(
-          `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoIds}&key=${API_KEY}`
+        // First, get the uploads playlist ID from the channel
+        const channelResponse = await fetch(
+          `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${API_KEY}`
         );
 
-        const data = await response.json();
+        const channelData = await channelResponse.json();
 
-        if (data.items) {
-          setVideoDetails(
-            data.items.map((item) => ({
-              title: item.snippet.title,
-              description: item.snippet.description
-            }))
-          );
+        if (!channelData.items || channelData.items.length === 0) {
+          console.error("Channel not found");
+          setLoading(false);
+          return;
         }
+
+        const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
+
+        // Then, get the latest videos from the uploads playlist
+        const playlistResponse = await fetch(
+          `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=4&playlistId=${uploadsPlaylistId}&key=${API_KEY}`
+        );
+
+        const playlistData = await playlistResponse.json();
+
+        if (!playlistData.items) {
+          console.error("No videos found");
+          setLoading(false);
+          return;
+        }
+
+        // Extract video IDs and details
+        const videoIds = playlistData.items.map((item) => item.snippet.resourceId.videoId);
+        setVideos(videoIds);
+
+        setVideoDetails(
+          playlistData.items.map((item) => ({
+            title: item.snippet.title,
+            description: item.snippet.description
+          }))
+        );
 
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching video details:", error);
+        console.error("Error fetching videos:", error);
         setLoading(false);
       }
     };
 
-    fetchVideoDetails();
-  }, [videos]); // Now videos won't change between renders
+    fetchLatestVideos();
+  }, [channelId]);
 
   return (
     <PortfolioSection id="portfolio">
       <SectionContainer>
-        <Title>Our Work</Title>
+        <Title>Últimos proyectos</Title>
         <Description>
           En <strong>OnSight</strong>, convertimos tus ideas en experiencias visuales únicas,
           llevando tu visión a la pantalla con creatividad y calidad.

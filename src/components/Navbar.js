@@ -204,7 +204,7 @@ const Navbar = () => {
             Servicios
           </NavLink>
           <NavLink to="portfolio" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-            Portfolio
+            Últimos proyectos
           </NavLink>
           <NavLink to="contact" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
             Contacto
@@ -242,7 +242,7 @@ const Navbar = () => {
             offset={-80}
             onClick={toggleMenu}
           >
-            Portfolio
+            Últimos proyectos
           </MobileLink>
           <MobileLink
             to="contact"
