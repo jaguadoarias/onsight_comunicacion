@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -99,13 +99,14 @@ const Portfolio = () => {
     }
   };
 
-  const videos = [
+  // Wrap videos array in useMemo to prevent recreating on each render
+  const videos = useMemo(() => [
     "5Y5Q3mtucsU",
     "Bw_jBZ-Ah04",
     "wt1d16nCrMw",
     "noPTyfGWToM"
     // Add more video IDs here
-  ];
+  ], []);
 
   useEffect(() => {
     const fetchVideoDetails = async () => {
@@ -143,7 +144,7 @@ const Portfolio = () => {
     };
 
     fetchVideoDetails();
-  }, [videos]);
+  }, [videos]); // Now videos won't change between renders
 
   return (
     <PortfolioSection id="portfolio">
