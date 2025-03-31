@@ -110,9 +110,15 @@ const Portfolio = () => {
   useEffect(() => {
     const fetchVideoDetails = async () => {
       try {
-        // You'll need to create a YouTube API key in Google Cloud Console
-        const API_KEY = "AIzaSyDi_Ywv0pUH0L_KhVQ3yiupwodHyg_tVgk";
+        // Use environment variable instead of hardcoded API key
+        const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
         const videoIds = videos.join(",");
+
+        if (!API_KEY) {
+          console.error("YouTube API key is missing. Please check your environment variables.");
+          setLoading(false);
+          return;
+        }
 
         const response = await fetch(
           `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoIds}&key=${API_KEY}`
