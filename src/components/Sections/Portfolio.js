@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { FaQuoteLeft } from "react-icons/fa"; // Import quote icon
 
 const PortfolioSection = styled.section`
   padding: var(--spacing-xl) 0;
@@ -23,6 +24,7 @@ const Title = styled.h2`
 
 const VideoWrapper = styled.div`
   padding: var(--spacing-md);
+  padding-bottom: 0;
   height: 600px;
   position: relative;
   cursor: pointer;
@@ -67,12 +69,30 @@ const VideoContainer = styled.div`
 
 const VideoDescription = styled.div`
   color: #fff;
-  padding: var(--spacing-md) 0;
+  padding: var(--spacing-md) var(--spacing-lg);
   font-size: var(--font-size-medium);
-  line-height: 1.5;
+  line-height: 1.6;
   text-align: center;
-  max-width: 90%;
+  width: 95%;
   margin: 0 auto;
+  position: relative;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+`;
+
+const QuoteIcon = styled.div`
+  color: var(--color-primary);
+  font-size: 24px;
+  margin-right: var(--spacing-sm);
+  opacity: 0.8;
+`;
+
+const DescriptionText = styled.p`
+  margin: 0;
+  font-style: italic;
+  letter-spacing: 0.3px;
 `;
 
 const Portfolio = () => {
@@ -192,12 +212,17 @@ const Portfolio = () => {
                 />
               </VideoWrapper>
               <VideoDescription>
-                {loading
-                  ? "Loading description..."
-                  : videoDetails[index]?.description
-                  ? videoDetails[index].description.substring(0, 150) +
-                    (videoDetails[index].description.length > 150 ? "..." : "")
-                  : "No description available"}
+                <QuoteIcon>
+                  <FaQuoteLeft />
+                </QuoteIcon>
+                <DescriptionText>
+                  {loading
+                    ? "Loading description..."
+                    : videoDetails[index]?.description
+                    ? videoDetails[index].description.substring(0, 150) +
+                      (videoDetails[index].description.length > 150 ? "..." : "")
+                    : "No description available"}
+                </DescriptionText>
               </VideoDescription>
             </VideoContainer>
           ))}
