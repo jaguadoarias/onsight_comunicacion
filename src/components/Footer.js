@@ -76,7 +76,7 @@ const Footer = () => {
             <FaLinkedin />
           </SocialLink>
         </SocialNav>
-        <Copyright>© {currentYear} Onsight Comunicación. All rights reserved.</Copyright>
+        <Copyright>© {currentYear} Onsight Comunicación.</Copyright>
       </FooterWrapper>
     </FooterContainer>
   );
