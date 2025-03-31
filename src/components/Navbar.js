@@ -49,7 +49,7 @@ const MobileMenu = styled.div`
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     flex-direction: column;
     position: absolute;
-    top: var(--header-height);
+    top: calc(50vh - 150px);
     left: 0;
     right: 0;
     padding: var(--spacing-md);
@@ -62,6 +62,7 @@ const MobileLink = styled(Link)`
   color: #fff;
   display: block;
   padding: var(--spacing-sm);
+  font-size: var(--font-size-medium);
   text-align: center;
   text-decoration: none;
   font-weight: 500;
