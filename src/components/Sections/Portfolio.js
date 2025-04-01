@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { FaQuoteLeft } from "react-icons/fa"; // Import quote icon
+import { FaQuoteLeft } from "react-icons/fa";
+import { LuVideo } from "react-icons/lu"; // Import quote icon
 import { Link } from "react-router-dom";
 
 const PortfolioSection = styled.section`
@@ -97,28 +98,27 @@ const DescriptionText = styled.p`
 `;
 
 const ViewAllButton = styled(Link)`
-  display: inline-block;
-  margin-top: var(--spacing-lg);
-  padding: var(--spacing-sm) var(--spacing-lg);
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  padding: 16px 48px;
   background: var(--color-primary);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
-  text-align: center;
-  
+  text-decoration: none;
+
   &:hover {
     background: var(--color-primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: var(--spacing-xl);
 `;
 
 const Portfolio = () => {
@@ -165,7 +165,7 @@ const Portfolio = () => {
         const channelResponse = await fetch(
           `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${API_KEY}`
         );
-        
+
         if (!channelResponse.ok) {
           const errorData = await channelResponse.json();
           console.error("Channel API error:", errorData);
@@ -175,50 +175,52 @@ const Portfolio = () => {
         }
 
         const channelData = await channelResponse.json();
-        
+
         if (!channelData.items || channelData.items.length === 0) {
           console.error("Channel not found");
           setError("Channel not found");
           setLoading(false);
           return;
         }
-        
+
         const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
-        
+
         // Then, get the latest videos from the uploads playlist
         const playlistResponse = await fetch(
           `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=4&playlistId=${uploadsPlaylistId}&key=${API_KEY}`
         );
-        
+
         if (!playlistResponse.ok) {
           const errorData = await playlistResponse.json();
           console.error("Playlist API error:", errorData);
-          setError(`Playlist API error: ${errorData?.error?.message || playlistResponse.statusText}`);
+          setError(
+            `Playlist API error: ${errorData?.error?.message || playlistResponse.statusText}`
+          );
           setLoading(false);
           return;
         }
-        
+
         const playlistData = await playlistResponse.json();
-        
+
         if (!playlistData.items || playlistData.items.length === 0) {
           console.error("No videos found");
           setError("No videos found");
           setLoading(false);
           return;
         }
-        
+
         // Extract video IDs and details
         const videoIds = playlistData.items.map((item) => item.snippet.resourceId.videoId);
         console.log("Fetched video IDs:", videoIds);
         setVideos(videoIds);
-        
+
         setVideoDetails(
           playlistData.items.map((item) => ({
             title: item.snippet.title,
             description: item.snippet.description
           }))
         );
-        
+
         setLoading(false);
       } catch (error) {
         console.error("Error fetching videos:", error);
@@ -231,22 +233,22 @@ const Portfolio = () => {
   }, [channelId]);
 
   // Add fallback videos in case the API fails
-  const fallbackVideos = useMemo(() => [
-    "5Y5Q3mtucsU",
-    "Bw_jBZ-Ah04",
-    "wt1d16nCrMw",
-    "noPTyfGWToM"
-  ], []);
+  const fallbackVideos = useMemo(
+    () => ["5Y5Q3mtucsU", "Bw_jBZ-Ah04", "wt1d16nCrMw", "noPTyfGWToM"],
+    []
+  );
 
   // Use fallback videos if API fetch fails
   useEffect(() => {
     if (error && videos.length === 0) {
       console.log("Using fallback videos due to API error");
       setVideos(fallbackVideos);
-      setVideoDetails(fallbackVideos.map((_, i) => ({
-        title: `Portfolio Video ${i + 1}`,
-        description: "Video description not available."
-      })));
+      setVideoDetails(
+        fallbackVideos.map((_, i) => ({
+          title: `Portfolio Video ${i + 1}`,
+          description: "Video description not available."
+        }))
+      );
       setLoading(false);
     }
   }, [error, videos, fallbackVideos]);
@@ -260,13 +262,11 @@ const Portfolio = () => {
           llevando tu visión a la pantalla con creatividad y calidad.
         </Description>
         {loading ? (
-          <div style={{ color: '#fff', textAlign: 'center', padding: '50px 0' }}>
+          <div style={{ color: "#fff", textAlign: "center", padding: "50px 0" }}>
             Cargando videos...
           </div>
         ) : error && videos.length === 0 ? (
-          <div style={{ color: '#fff', textAlign: 'center', padding: '50px 0' }}>
-            {error}
-          </div>
+          <div style={{ color: "#fff", textAlign: "center", padding: "50px 0" }}>{error}</div>
         ) : (
           <>
             <Carousel
@@ -306,13 +306,11 @@ const Portfolio = () => {
                 </VideoContainer>
               ))}
             </Carousel>
-            <ButtonContainer>
-              <ViewAllButton to="/projects">
-                Ver todos los proyectos
-              </ViewAllButton>
-            </ButtonContainer>
+            <ViewAllButton to="/projects">
+              <LuVideo /> Ver todos los proyectos
+            </ViewAllButton>
           </>
-          )}
+        )}
       </SectionContainer>
     </PortfolioSection>
   );
