@@ -11,18 +11,20 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div id="home">
-        <Hero />
-      </div>
-      <div id="services">
-        <Services />
-      </div>
-      <div id="portfolio">
-        <Portfolio />
-      </div>
-      <div id="contact">
-        <Contact />
-      </div>
+      <main>
+        <section id="home" aria-label="Hero section">
+          <Hero />
+        </section>
+        <section id="services" aria-label="Our services">
+          <Services />
+        </section>
+        <section id="portfolio" aria-label="Our portfolio">
+          <Portfolio />
+        </section>
+        <section id="contact" aria-label="Contact us">
+          <Contact />
+        </section>
+      </main>
       <Footer />
     </>
   );

@@ -144,7 +144,20 @@ const Hero = () => {
   }, []);
 
   return (
-    <HeroContainer>
+    <>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "OnSight Comunicación",
+            "url": "https://onsightcomunicacion.com",
+            "logo": "https://onsightcomunicacion.com/logo.png",
+            "description": "Producción audiovisual profesional en Madrid"
+          }
+        `}
+      </script>
+      <HeroContainer>
       <VideoBg>
         <VideoIframe
           src="https://www.youtube.com/embed/Ku7dAXrmxsA&t=4s?autoplay=1&mute=1&controls=0&loop=1&playlist=Ku7dAXrmxsA&t=4s&showinfo=0&rel=0&enablejsapi=1&version=3&playerapiid=ytplayer&vq=small"
@@ -196,6 +209,7 @@ const Hero = () => {
         </HeroCTA>
       </HeroContent>
     </HeroContainer>
+    </>
   );
 };
 
