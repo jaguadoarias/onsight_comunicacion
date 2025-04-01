@@ -213,7 +213,7 @@ const Navbar = () => {
           </Logo>
         </LogoContainer>
         <ProgressLine progress={scrollProgress} />
-        <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX /> : <HiOutlineMenu />}</MobileIcon>
+        <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX size={36} /> : <HiOutlineMenu size={36} />}</MobileIcon>
         <NavMenu scrollNav={scrollNav}>
           <NavLink to="/#home">Home</NavLink>
           <NavLink to="/#services">Servicios</NavLink>
