@@ -1,4 +1,7 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Projects from './pages/Projects';
 import { Element } from "react-scroll";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -12,23 +15,12 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
-      <GlobalStyles />
-      <Navbar />
-      <Element name="home">
-        <Hero />
-      </Element>
-      <Element name="services">
-        <Services />
-      </Element>
-      <Element name="portfolio">
-        <Portfolio />
-      </Element>
-      <Element name="contact">
-        <Contact />
-      </Element>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
+    </Router>
   );
 }
 

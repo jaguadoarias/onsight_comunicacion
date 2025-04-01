@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FaQuoteLeft } from "react-icons/fa"; // Import quote icon
+import { Link } from "react-router-dom";
 
 const PortfolioSection = styled.section`
   padding: var(--spacing-xl) 0;
@@ -93,6 +94,31 @@ const DescriptionText = styled.p`
   margin: 0;
   font-style: italic;
   letter-spacing: 0.3px;
+`;
+
+const ViewAllButton = styled(Link)`
+  display: inline-block;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+  
+  &:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
 `;
 
 const Portfolio = () => {
@@ -233,7 +259,6 @@ const Portfolio = () => {
           En <strong>OnSight</strong>, convertimos tus ideas en experiencias visuales únicas,
           llevando tu visión a la pantalla con creatividad y calidad.
         </Description>
-        
         {loading ? (
           <div style={{ color: '#fff', textAlign: 'center', padding: '50px 0' }}>
             Cargando videos...
@@ -259,7 +284,7 @@ const Portfolio = () => {
                 <VideoContainer key={index}>
                   <VideoWrapper>
                     <VideoFrame
-                      src={`https://www.youtube.com/embed/${videoId}?controls=1&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3`}
+                      src={`https://www.youtube.com/embed/${videoId}?controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3`}
                       title={videoDetails[index]?.title || `Portfolio Video ${index + 1}`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -270,7 +295,9 @@ const Portfolio = () => {
                       <FaQuoteLeft />
                     </QuoteIcon>
                     <DescriptionText>
-                      {videoDetails[index]?.description
+                      {loading
+                        ? "Loading description..."
+                        : videoDetails[index]?.description
                         ? videoDetails[index].description.substring(0, 150) +
                           (videoDetails[index].description.length > 150 ? "..." : "")
                         : "No description available"}
@@ -279,8 +306,13 @@ const Portfolio = () => {
                 </VideoContainer>
               ))}
             </Carousel>
+            <ButtonContainer>
+              <ViewAllButton to="/projects">
+                Ver todos los proyectos
+              </ViewAllButton>
+            </ButtonContainer>
           </>
-        )}
+          )}
       </SectionContainer>
     </PortfolioSection>
   );
