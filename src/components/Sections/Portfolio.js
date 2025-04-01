@@ -102,13 +102,13 @@ const ViewAllButton = styled(Link)`
   width: fit-content;
   align-items: center;
   gap: 10px;
-  margin: 0 auto;
-  padding: 16px 48px;
+  margin: 0 auto 32px;
+  padding: 12px 32px;
   background: var(--color-primary);
   color: #fff;
   border: none;
   border-radius: 8px;
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-regular);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -269,6 +269,9 @@ const Portfolio = () => {
           <div style={{ color: "#fff", textAlign: "center", padding: "50px 0" }}>{error}</div>
         ) : (
           <>
+            <ViewAllButton to="/projects">
+              <LuVideo /> Ver todos los proyectos
+            </ViewAllButton>
             <Carousel
               responsive={responsive}
               infinite={true}
@@ -306,9 +309,6 @@ const Portfolio = () => {
                 </VideoContainer>
               ))}
             </Carousel>
-            <ViewAllButton to="/projects">
-              <LuVideo /> Ver todos los proyectos
-            </ViewAllButton>
           </>
         )}
       </SectionContainer>

@@ -1,30 +1,28 @@
 import React from 'react';
-import { Element } from "react-scroll";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Sections/Services";
 import Portfolio from "../components/Sections/Portfolio";
 import Contact from "../components/Sections/Contact";
 import Footer from "../components/Footer";
-import GlobalStyles from "../styles/GlobalStyles";
+
 
 const Home = () => {
   return (
     <>
-      <GlobalStyles />
       <Navbar />
-      <Element name="home">
+      <div id="home">
         <Hero />
-      </Element>
-      <Element name="services">
+      </div>
+      <div id="services">
         <Services />
-      </Element>
-      <Element name="portfolio">
+      </div>
+      <div id="portfolio">
         <Portfolio />
-      </Element>
-      <Element name="contact">
+      </div>
+      <div id="contact">
         <Contact />
-      </Element>
+      </div>
       <Footer />
     </>
   );

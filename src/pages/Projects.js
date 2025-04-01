@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
-import GlobalStyles from "../styles/GlobalStyles";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -175,7 +174,6 @@ const Projects = () => {
 
   return (
     <>
-      <GlobalStyles />
       <Navbar />
       <ProjectsContainer>
         <ProjectsSection>

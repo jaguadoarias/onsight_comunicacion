@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-scroll";
 import onsightLogo from "../images/onsight_comunicacion.svg";
 import "../styles/variables.css";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 
 const Nav = styled.nav`
   height: var(--header-height);
@@ -58,21 +58,7 @@ const MobileMenu = styled.div`
   }
 `;
 
-const MobileLink = styled(Link)`
-  color: #fff;
-  display: block;
-  padding: var(--spacing-sm);
-  font-size: var(--font-size-large);
-  text-align: center;
-  text-decoration: none;
-  font-weight: 500;
-  width: 100%;
-
-  &:hover {
-    color: var(--color-primary);
-  }
-`;
-
+// Update NavLink component
 const NavLink = styled(Link)`
   color: #fff;
   display: flex;
@@ -88,6 +74,22 @@ const NavLink = styled(Link)`
   }
 
   &.active {
+    color: var(--color-primary);
+  }
+`;
+
+// Update MobileLink component
+const MobileLink = styled(Link)`
+  color: #fff;
+  display: block;
+  padding: var(--spacing-sm);
+  font-size: var(--font-size-large);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  width: 100%;
+
+  &:hover {
     color: var(--color-primary);
   }
 `;
@@ -181,19 +183,12 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.overflow = "unset";
     }
-
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
@@ -213,68 +208,19 @@ const Navbar = () => {
         <ProgressLine progress={scrollProgress} />
         <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX /> : <HiOutlineMenu />}</MobileIcon>
         <NavMenu scrollNav={scrollNav}>
-          <NavLink to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-            Home
-          </NavLink>
-          <NavLink to="services" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-            Servicios
-          </NavLink>
-          <NavLink to="portfolio" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-            Últimos proyectos
-          </NavLink>
-          <NavLink to="contact" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
-            Contacto
-          </NavLink>
+          <NavLink to="/#home">Home</NavLink>
+          <NavLink to="/#services">Servicios</NavLink>
+          <NavLink to="/#portfolio">Últimos proyectos</NavLink>
+          <NavLink to="/#contact">Contacto</NavLink>
         </NavMenu>
         <MobileMenu isOpen={isOpen}>
-          <MobileLink
-            to="home"
-            smooth={true}
-            duration={500}
-            spy={true}
-            exact="true"
-            offset={-80}
-            onClick={toggleMenu}
-          >
-            Home
-          </MobileLink>
-          <MobileLink
-            to="services"
-            smooth={true}
-            duration={500}
-            spy={true}
-            exact="true"
-            offset={-80}
-            onClick={toggleMenu}
-          >
-            Servicios
-          </MobileLink>
-          <MobileLink
-            to="portfolio"
-            smooth={true}
-            duration={500}
-            spy={true}
-            exact="true"
-            offset={-80}
-            onClick={toggleMenu}
-          >
-            Últimos proyectos
-          </MobileLink>
-          <MobileLink
-            to="contact"
-            smooth={true}
-            duration={500}
-            spy={true}
-            exact="true"
-            offset={-80}
-            onClick={toggleMenu}
-          >
-            Contacto
-          </MobileLink>
+          <MobileLink to="/#home" onClick={toggleMenu}>Home</MobileLink>
+          <MobileLink to="/#services" onClick={toggleMenu}>Servicios</MobileLink>
+          <MobileLink to="/#portfolio" onClick={toggleMenu}>Últimos proyectos</MobileLink>
+          <MobileLink to="/#contact" onClick={toggleMenu}>Contacto</MobileLink>
         </MobileMenu>
       </Nav>
     </>
   );
 };
-
 export default Navbar;
