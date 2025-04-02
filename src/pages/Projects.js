@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { FaArrowUpRightFromSquare, FaPlay } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 const ProjectsContainer = styled.div`
@@ -44,12 +45,14 @@ const ProjectsGrid = styled.div`
   margin-top: var(--spacing-xl);
 `;
 
+// Then update the ProjectCard and related styles
 const ProjectCard = styled(motion.div)`
   background: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
   
   &:hover {
     transform: translateY(-5px);
@@ -76,6 +79,28 @@ const ProjectThumbnail = styled.div`
   }
 `;
 
+const ViewProjectButton = styled.a`
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: var(--color-primary);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  
+  &:hover {
+    background: var(--color-primary-hover);
+    transform: scale(1.1);
+  }
+`;
+
 const ProjectContent = styled.div`
   padding: var(--spacing-md);
 `;
@@ -83,7 +108,15 @@ const ProjectContent = styled.div`
 const ProjectTitle = styled.h3`
   color: #fff;
   margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-regular);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  
+  svg {
+    color: var(--color-primary);
+    font-size: 0.9em;
+  }
 `;
 
 const ProjectDescription = styled.p`
@@ -91,19 +124,6 @@ const ProjectDescription = styled.p`
   opacity: 0.8;
   font-size: var(--font-size-small);
   margin-bottom: var(--spacing-md);
-`;
-
-const ProjectLink = styled.a`
-  display: inline-block;
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: var(--font-size-small);
-  
-  &:hover {
-    color: var(--color-primary-hover);
-    text-decoration: underline;
-  }
 `;
 
 const Projects = () => {
@@ -196,20 +216,25 @@ const Projects = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <ProjectThumbnail image={project.thumbnail} />
+                    <ProjectThumbnail image={project.thumbnail}>
+                      <ViewProjectButton 
+                        href={`https://www.youtube.com/watch?v=${project.id}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        aria-label="Ver proyecto"
+                      >
+                        <FaArrowUpRightFromSquare />
+                      </ViewProjectButton>
+                    </ProjectThumbnail>
                     <ProjectContent>
-                      <ProjectTitle>{project.title}</ProjectTitle>
+                      <ProjectTitle>
+                        <FaPlay />
+                        {project.title}
+                      </ProjectTitle>
                       <ProjectDescription>
                         {project.description.substring(0, 100)}
                         {project.description.length > 100 ? '...' : ''}
                       </ProjectDescription>
-                      <ProjectLink 
-                        href={`https://www.youtube.com/watch?v=${project.id}`} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                      >
-                        Ver proyecto
-                      </ProjectLink>
                     </ProjectContent>
                   </ProjectCard>
                 ))}
