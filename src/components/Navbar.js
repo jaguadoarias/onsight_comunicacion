@@ -41,20 +41,54 @@ const Overlay = styled.div`
   }
 `;
 
-// Update MobileMenu component
+// Update MobileMenu component with animation styles
 const MobileMenu = styled.div`
   display: none;
 
   @media screen and (max-width: 1024px) {
-    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    display: flex;
     flex-direction: column;
-    position: absolute;
-    top: calc(50vh - 150px);
-    left: 0;
+    position: fixed;
+    top: 0;
+    left: ${({ isOpen }) => (isOpen ? '0' : '100%')};
     right: 0;
+    bottom: 0;
     padding: var(--spacing-md);
-    transition: all 0.3s ease;
+    padding-top: calc(var(--header-height) + var(--spacing-md));
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
+    opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+    visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+  }
+`;
+
+// Update MobileLink with animation
+// Update the MobileLink styled component to properly receive props
+const MobileLink = styled(Link).attrs(({ isOpen, index }) => ({
+  style: {
+    transitionDelay: isOpen ? `${index * 0.1}s` : '0s'
+  }
+}))`
+  color: #fff;
+  display: block;
+  padding: var(--spacing-md);
+  margin: var(--spacing-sm) 0;
+  font-size: var(--font-size-large);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  width: 100%;
+  transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(20px)')};
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
   }
 `;
 
@@ -78,21 +112,6 @@ const NavLink = styled(Link)`
   }
 `;
 
-// Update MobileLink component
-const MobileLink = styled(Link)`
-  color: #fff;
-  display: block;
-  padding: var(--spacing-sm);
-  font-size: var(--font-size-large);
-  text-align: center;
-  text-decoration: none;
-  font-weight: 500;
-  width: 100%;
-
-  &:hover {
-    color: var(--color-primary);
-  }
-`;
 
 const LogoImage = styled.img`
   height: 40px;
@@ -110,6 +129,7 @@ const Logo = styled(Link)`
   text-decoration: none;
 `;
 
+// Update MobileIcon styled component to ensure it stays above the menu
 const MobileIcon = styled.div`
   display: none;
 
@@ -120,12 +140,10 @@ const MobileIcon = styled.div`
     font-size: 28px;
     margin-right: var(--spacing-md);
     cursor: pointer;
-    color: var(--color-primary);
+    color: var(--color-primary-hover);
     transition: all 0.3s ease;
-
-    &:hover {
-      color: var(--color-primary-hover);
-    }
+    z-index: 1000; // Add this line to ensure it stays above everything
+    position: relative; // Add this to establish a stacking context
   }
 `;
 
@@ -221,10 +239,10 @@ const Navbar = () => {
           <NavLink to="/#contact">Contacto</NavLink>
         </NavMenu>
         <MobileMenu isOpen={isOpen}>
-          <MobileLink to="/#home" onClick={toggleMenu}>Home</MobileLink>
-          <MobileLink to="/#services" onClick={toggleMenu}>Servicios</MobileLink>
-          <MobileLink to="/#portfolio" onClick={toggleMenu}>Últimos proyectos</MobileLink>
-          <MobileLink to="/#contact" onClick={toggleMenu}>Contacto</MobileLink>
+          <MobileLink to="/#home" onClick={toggleMenu} isOpen={isOpen} index={0}>Home</MobileLink>
+          <MobileLink to="/#services" onClick={toggleMenu} isOpen={isOpen} index={1}>Servicios</MobileLink>
+          <MobileLink to="/#portfolio" onClick={toggleMenu} isOpen={isOpen} index={2}>Últimos proyectos</MobileLink>
+          <MobileLink to="/#contact" onClick={toggleMenu} isOpen={isOpen} index={3}>Contacto</MobileLink>
         </MobileMenu>
       </Nav>
     </>
