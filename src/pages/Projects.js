@@ -174,7 +174,7 @@ const Projects = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar isLogoAlwaysVisible={true} />
       <ProjectsContainer>
         <ProjectsSection>
           <Container>

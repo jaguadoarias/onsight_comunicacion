@@ -168,12 +168,14 @@ const ProgressLine = styled.div`
 
 // Add a styled component for the logo container with opacity transition
 const LogoContainer = styled.div`
-  opacity: ${({ scrollNav }) => (scrollNav ? 1 : 0)};
-  transform: translateY(${({ scrollNav }) => (scrollNav ? '0' : '-10px')});
+  opacity: ${({ scrollNav, isLogoAlwaysVisible }) => 
+    (scrollNav || isLogoAlwaysVisible) ? 1 : 0};
+  transform: translateY(${({ scrollNav, isLogoAlwaysVisible }) => 
+    (scrollNav || isLogoAlwaysVisible) ? '0' : '-10px'});
   transition: opacity 0.4s ease, transform 0.4s ease;
 `;
 
-const Navbar = () => {
+const Navbar = ({ isLogoAlwaysVisible = false }) => {
   const [scrollNav, setScrollNav] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -225,7 +227,7 @@ const Navbar = () => {
     <>
       <Overlay isOpen={isOpen} onClick={toggleMenu} />
       <Nav scrollNav={scrollNav}>
-        <LogoContainer scrollNav={scrollNav}>
+        <LogoContainer scrollNav={scrollNav} isLogoAlwaysVisible={isLogoAlwaysVisible}>
           <Logo to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
             <LogoImage src={onsightLogo} alt="Logotipo Onsight Comunicación" />
           </Logo>
