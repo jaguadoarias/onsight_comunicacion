@@ -4,7 +4,7 @@ import { FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const FooterContainer = styled.footer`
   background: var(--color-bg-darker);
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-lg) 0;
 `;
 
 const FooterWrapper = styled.div`
@@ -14,31 +14,27 @@ const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
 `;
 
-const Logo = styled.h6`
-  font-size: var(--font-size-large);
-  color: var(--color-primary);
-  font-weight: bold;
-`;
-
-const Copyright = styled.p`
+const Copyright = styled.h6`
   color: #fff;
   text-align: center;
   font-size: var(--font-size-small);
+  font-size: var(--font-size-regular);
 `;
 
 const SocialNav = styled.nav`
   display: flex;
   gap: var(--spacing-md);
-  margin: var(--spacing-md) 0;
+  margin: var(--spacing-xs) 0;
 `;
 
 const SocialLink = styled.a`
   color: #fff;
   font-size: 24px;
   transition: all 0.3s ease;
+  display: inline-flex;
 
   &:hover {
     color: var(--color-primary);
@@ -52,31 +48,30 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterWrapper>
-        <Logo>Onsight Comunicación</Logo>
         <SocialNav>
           <SocialLink
             href="https://youtube.com/@onsightcomunicacion"
             target="_blank"
             rel="noopener noreferrer"
-          >
+            >
             <FaYoutube />
           </SocialLink>
           <SocialLink
             href="https://instagram.com/onsight_comunicacion"
             target="_blank"
             rel="noopener noreferrer"
-          >
+            >
             <FaInstagram />
           </SocialLink>
           <SocialLink
             href="https://linkedin.com/company/onsight-comunicacion"
             target="_blank"
             rel="noopener noreferrer"
-          >
+            >
             <FaLinkedin />
           </SocialLink>
         </SocialNav>
-        <Copyright>© {currentYear} Onsight Comunicación.</Copyright>
+        <Copyright>Onsight Comunicación © {currentYear}</Copyright>
       </FooterWrapper>
     </FooterContainer>
   );

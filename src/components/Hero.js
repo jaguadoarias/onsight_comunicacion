@@ -122,7 +122,7 @@ const HeroLogo = styled(motion.div)`
   z-index: 4;
 
   img {
-    width: min(40vw, 240px); // Larger size
+    width: min(40vw, 280px); // Larger size
     height: auto;
   }
 `;

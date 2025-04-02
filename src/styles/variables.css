@@ -6,6 +6,7 @@
   --color-bg-transparent: transparent;
   --color-bg-dark: rgba(0, 0, 0, 0.85);
   --color-bg-darker: rgba(0, 0, 0, 0.95);
+  --color-grey-300: #adadad;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
