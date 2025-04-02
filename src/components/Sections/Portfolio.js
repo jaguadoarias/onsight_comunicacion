@@ -67,6 +67,7 @@ const VideoFrame = styled.iframe`
 const VideoTitle = styled.h3`
   color: #fff;
   font-size: var(--font-size-small);
+  text-align: left;
 `;
 
 const VideoContainer = styled.div`
