@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa6";
 import { LuVideo } from "react-icons/lu"; // Import quote icon
 import { Link } from "react-router-dom";
 
@@ -64,6 +64,11 @@ const VideoFrame = styled.iframe`
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 `;
 
+const VideoTitle = styled.h3`
+  color: #fff;
+  font-size: var(--font-size-small);
+`;
+
 const VideoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -71,7 +76,7 @@ const VideoContainer = styled.div`
 
 const VideoDescription = styled.div`
   color: #fff;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) 0 0 var(--spacing-xs);
   font-size: var(--font-size-medium);
   line-height: 1.6;
   text-align: center;
@@ -91,10 +96,17 @@ const QuoteIcon = styled.div`
   opacity: 0.8;
 `;
 
+const VideoData = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
 const DescriptionText = styled.p`
-  margin: 0;
-  font-style: italic;
   letter-spacing: 0.3px;
+  color: #fff;
+  opacity: 0.8;
+  font-size: var(--font-size-small);
 `;
 
 const ViewAllButton = styled(Link)`
@@ -295,16 +307,21 @@ const Portfolio = () => {
                   </VideoWrapper>
                   <VideoDescription>
                     <QuoteIcon>
-                      <FaQuoteLeft />
+                      <FaPlay />
                     </QuoteIcon>
-                    <DescriptionText>
-                      {loading
-                        ? "Loading description..."
-                        : videoDetails[index]?.description
-                        ? videoDetails[index].description.substring(0, 150) +
-                          (videoDetails[index].description.length > 150 ? "..." : "")
-                        : "No description available"}
-                    </DescriptionText>
+                    <VideoData>
+                      <VideoTitle>
+                      {videoDetails[index]?.title}
+                      </VideoTitle>
+                      <DescriptionText>
+                        {loading
+                          ? "Loading description..."
+                          : videoDetails[index]?.description
+                          ? videoDetails[index].description.substring(0, 150) +
+                            (videoDetails[index].description.length > 150 ? "..." : "")
+                          : "No description available"}
+                      </DescriptionText>
+                    </VideoData>
                   </VideoDescription>
                 </VideoContainer>
               ))}
