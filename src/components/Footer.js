@@ -26,21 +26,35 @@ const Copyright = styled.h6`
 
 const SocialNav = styled.nav`
   display: flex;
-  gap: var(--spacing-md);
   margin: var(--spacing-xs) 0;
+  padding: 8px 0; // Add vertical padding
 `;
 
+// Update SocialLink styles
 const SocialLink = styled.a`
   color: #fff;
   font-size: 24px;
   transition: all 0.3s ease;
   display: inline-flex;
+  padding: 12px; // Add padding to increase touch area
+  position: relative;
+
+  // Add pseudo-element to further increase clickable area
+  &::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+  }
 
   &:hover {
     color: var(--color-primary);
     transform: translateY(-2px);
   }
 `;
+
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

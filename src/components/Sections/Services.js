@@ -82,7 +82,7 @@ const ServiceCard = styled.div`
   background-position: center;
   transition: all 0.3s ease;
   border: 1px solid #000;
-  grid-column: ${props => props.fullWidth ? '1 / -1' : 'auto'};
+  grid-column: ${(props) => (props.fullWidth ? "1 / -1" : "auto")};
 
   &::before {
     content: "";
@@ -103,6 +103,10 @@ const ServiceCard = styled.div`
     &::before {
       background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.95));
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    background-position: ${(props) => props.mobileGap && "20% 0"};
   }
 `;
 
@@ -148,37 +152,41 @@ const Services = () => {
       description:
         "Creamos un storytelling original, vinculamos emociones con tu marca y le damos un look atractivo",
       image: "/images/onsight_branded.jpg",
-      cta: "Learn More"
+      cta: "Learn More",
+      mobileGap: false
     },
     {
       title: "Vídeos corporativos",
       description:
         "Cuidamos todos los detalles desde la creación de la idea al resultado final para que la imagen de tu empresa sea más visible.",
       image: "/images/onsight_corporativos.jpg",
-      cta: "View Portfolio"
+      cta: "View Portfolio",
+      mobileGap: false
     },
     {
       title: "Streaming",
       description:
         "¿Sigues haciendo tus eventos solo en forma presencial? Multiplica por 10 el impacto de tu evento con streaming.",
       image: "/images/onsight_streaming.jpg",
-      cta: "Explore Services"
+      cta: "Explore Services",
+      mobileGap: true
     },
     {
       title: "Making of & Behind the scenes",
       description:
         "Deja constancia de todas tus actividades, sus protagonistas y utilízalo en redes para una mejor promoción de tus futuros eventos y acciones.",
       image: "/images/onsight_making-of.jpg",
-      cta: "Get Started"
+      cta: "Get Started",
+      mobileGap: false
     },
     {
       title: "Contenido para Infoproductores",
       description:
-        "Crea 6 meses de contenido en 2 días.",
+        "Optimizamos tu producción de contenido grabando meses de material en solo días. Maximiza tu alcance con contenidos profesionales.",
       image: "/images/onsight_infoproductores.jpg",
-      cta: "Saber más"
-    },
-    
+      cta: "Saber más",
+      mobileGap: true
+    }
   ];
 
   return (
@@ -191,10 +199,11 @@ const Services = () => {
         </Description>
         <CardsGrid>
           {services.map((service, index) => (
-            <ServiceCard 
-              key={index} 
+            <ServiceCard
+              key={index}
               bgImage={service.image}
               fullWidth={index === 0} // Make the first item take full width
+              mobileGap={service.mobileGap}
             >
               <CardContent>
                 <CardTitle>{service.title}</CardTitle>

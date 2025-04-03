@@ -271,7 +271,7 @@ const Portfolio = () => {
       <SectionContainer>
         <Title>Últimos proyectos</Title>
         <Description>
-          En <strong>OnSight</strong>, convertimos tus ideas en experiencias visuales únicas,
+          En <strong>Onsight</strong>, convertimos tus ideas en experiencias visuales únicas,
           llevando tu visión a la pantalla con creatividad y calidad.
         </Description>
         {loading ? (
