@@ -41,7 +41,7 @@ const SocialLink = styled.a`
 
   // Add pseudo-element to further increase clickable area
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -8px;
     left: -8px;
@@ -55,7 +55,6 @@ const SocialLink = styled.a`
   }
 `;
 
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -66,22 +65,19 @@ const Footer = () => {
           <SocialLink
             href="https://youtube.com/@onsightcomunicacion"
             target="_blank"
-            rel="noopener noreferrer"
-            >
+            rel="noopener noreferrer">
             <FaYoutube />
           </SocialLink>
           <SocialLink
             href="https://instagram.com/onsight_comunicacion"
             target="_blank"
-            rel="noopener noreferrer"
-            >
+            rel="noopener noreferrer">
             <FaInstagram />
           </SocialLink>
           <SocialLink
-            href="https://linkedin.com/company/onsight-comunicacion"
+            href="https://www.linkedin.com/company/onsight-comunicaci%C3%B3n/posts/?feedView=all"
             target="_blank"
-            rel="noopener noreferrer"
-            >
+            rel="noopener noreferrer">
             <FaLinkedin />
           </SocialLink>
         </SocialNav>
