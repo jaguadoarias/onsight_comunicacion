@@ -3,7 +3,7 @@ import styled from "styled-components";
 import onsightLogo from "../images/onsight_comunicacion.svg";
 import "../styles/variables.css";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Nav = styled.nav`
   height: var(--header-height);
@@ -15,7 +15,8 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  background: ${({ scrollNav }) => (scrollNav ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0)")};
+  background: ${({ scrollNav }) =>
+    scrollNav ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0)"};
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: all 0.4s ease;
@@ -50,7 +51,7 @@ const MobileMenu = styled.div`
     flex-direction: column;
     position: fixed;
     top: 0;
-    left: ${({ isOpen }) => (isOpen ? '0' : '100%')};
+    left: ${({ isOpen }) => (isOpen ? "0" : "100%")};
     right: 0;
     bottom: 0;
     padding: var(--spacing-md);
@@ -60,8 +61,8 @@ const MobileMenu = styled.div`
     -webkit-backdrop-filter: blur(12px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
-    opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
-    visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+    opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
+    visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
   }
 `;
 
@@ -69,8 +70,8 @@ const MobileMenu = styled.div`
 // Update the MobileLink styled component to properly receive props
 const MobileLink = styled(Link).attrs(({ isOpen, index }) => ({
   style: {
-    transitionDelay: isOpen ? `${index * 0.1}s` : '0s'
-  }
+    transitionDelay: isOpen ? `${index * 0.1}s` : "0s",
+  },
 }))`
   color: #fff;
   display: block;
@@ -81,8 +82,8 @@ const MobileLink = styled(Link).attrs(({ isOpen, index }) => ({
   text-decoration: none;
   font-weight: 500;
   width: 100%;
-  transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(20px)')};
-  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(20px)")};
+  opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
   transition: all 0.3s ease;
 
   &:hover {
@@ -111,7 +112,6 @@ const NavLink = styled(Link)`
     color: var(--color-primary);
   }
 `;
-
 
 const LogoImage = styled.img`
   height: 40px;
@@ -168,10 +168,12 @@ const ProgressLine = styled.div`
 
 // Add a styled component for the logo container with opacity transition
 const LogoContainer = styled.div`
-  opacity: ${({ scrollNav, isLogoAlwaysVisible }) => 
-    (scrollNav || isLogoAlwaysVisible) ? 1 : 0};
-  transform: translateY(${({ scrollNav, isLogoAlwaysVisible }) => 
-    (scrollNav || isLogoAlwaysVisible) ? '0' : '-10px'});
+  opacity: ${({ scrollNav, isLogoAlwaysVisible }) =>
+    scrollNav || isLogoAlwaysVisible ? 1 : 0};
+  transform: translateY(
+    ${({ scrollNav, isLogoAlwaysVisible }) =>
+      scrollNav || isLogoAlwaysVisible ? "0" : "-10px"}
+  );
   transition: opacity 0.4s ease, transform 0.4s ease;
 `;
 
@@ -189,7 +191,9 @@ const Navbar = ({ isLogoAlwaysVisible = false }) => {
 
     // Calculate scroll progress
     const winScroll = document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
     setScrollProgress(scrolled);
   };
@@ -203,19 +207,18 @@ const Navbar = ({ isLogoAlwaysVisible = false }) => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
     } else {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     }
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     };
   }, [isOpen]);
 
@@ -227,13 +230,23 @@ const Navbar = ({ isLogoAlwaysVisible = false }) => {
     <>
       <Overlay isOpen={isOpen} onClick={toggleMenu} />
       <Nav scrollNav={scrollNav}>
-        <LogoContainer scrollNav={scrollNav} isLogoAlwaysVisible={isLogoAlwaysVisible}>
-          <Logo to="home" smooth={true} duration={500} spy={true} exact="true" offset={-80}>
+        <LogoContainer
+          scrollNav={scrollNav}
+          isLogoAlwaysVisible={isLogoAlwaysVisible}>
+          <Logo
+            to="/#home"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}>
             <LogoImage src={onsightLogo} alt="Logotipo Onsight Comunicación" />
           </Logo>
         </LogoContainer>
         <ProgressLine progress={scrollProgress} />
-        <MobileIcon onClick={toggleMenu}>{isOpen ? <HiOutlineX size={36} /> : <HiOutlineMenu size={36} />}</MobileIcon>
+        <MobileIcon onClick={toggleMenu}>
+          {isOpen ? <HiOutlineX size={36} /> : <HiOutlineMenu size={36} />}
+        </MobileIcon>
         <NavMenu scrollNav={scrollNav}>
           <NavLink to="/#home">Home</NavLink>
           <NavLink to="/#services">Servicios</NavLink>
@@ -241,10 +254,34 @@ const Navbar = ({ isLogoAlwaysVisible = false }) => {
           <NavLink to="/#contact">Contacto</NavLink>
         </NavMenu>
         <MobileMenu isOpen={isOpen}>
-          <MobileLink to="/#home" onClick={toggleMenu} isOpen={isOpen} index={0}>Home</MobileLink>
-          <MobileLink to="/#services" onClick={toggleMenu} isOpen={isOpen} index={1}>Servicios</MobileLink>
-          <MobileLink to="/#portfolio" onClick={toggleMenu} isOpen={isOpen} index={2}>Últimos proyectos</MobileLink>
-          <MobileLink to="/#contact" onClick={toggleMenu} isOpen={isOpen} index={3}>Contacto</MobileLink>
+          <MobileLink
+            to="/#home"
+            onClick={toggleMenu}
+            isOpen={isOpen}
+            index={0}>
+            Home
+          </MobileLink>
+          <MobileLink
+            to="/#services"
+            onClick={toggleMenu}
+            isOpen={isOpen}
+            index={1}>
+            Servicios
+          </MobileLink>
+          <MobileLink
+            to="/#portfolio"
+            onClick={toggleMenu}
+            isOpen={isOpen}
+            index={2}>
+            Últimos proyectos
+          </MobileLink>
+          <MobileLink
+            to="/#contact"
+            onClick={toggleMenu}
+            isOpen={isOpen}
+            index={3}>
+            Contacto
+          </MobileLink>
         </MobileMenu>
       </Nav>
     </>
