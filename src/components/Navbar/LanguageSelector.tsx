@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 
   &:hover,
   &:focus-within {
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color: ${({ theme }) => theme.colors.primary};
     background: ${({ theme }) => theme.colors.bgCard};
   }
 `
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 const GlobeIcon = styled.svg`
   width: 0.9rem;
   height: 0.9rem;
-  color: ${({ theme }) => theme.colors.textMuted};
+  color: currentColor;
   flex-shrink: 0;
   pointer-events: none;
 `
@@ -42,7 +42,7 @@ const Trigger = styled.button`
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.35rem;
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.font.body};
   font-size: ${({ theme }) => theme.fontSize.sm};
@@ -51,6 +51,7 @@ const Trigger = styled.button`
   text-transform: uppercase;
   line-height: 1;
   transition: color ${({ theme }) => theme.transition.fast};
+  width: 100%;
 
   &:hover,
   &:focus-visible {
@@ -157,18 +158,6 @@ export default function LanguageSelector() {
 
   return (
     <Wrapper ref={wrapperRef} onKeyDown={handleKeyDown}>
-      <GlobeIcon
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-      </GlobeIcon>
-
       <Trigger
         type="button"
         aria-haspopup="listbox"
@@ -176,6 +165,17 @@ export default function LanguageSelector() {
         aria-label={`Idioma seleccionado: ${currentLabel}`}
         onClick={() => setOpen((o) => !o)}
       >
+        <GlobeIcon
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={1.8}
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </GlobeIcon>
         {currentLabel}
         <ChevronIcon
           $open={open}
