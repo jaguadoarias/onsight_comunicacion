@@ -1,5 +1,6 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { FaChevronDown, FaArrowRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import { fadeUpVariants } from "../../styles/animations";
 import {
   HeroSection,
@@ -15,6 +16,7 @@ import {
 const HERO_VIDEO_ID = "Ku7dAXrmxsA";
 
 export default function Hero() {
+  const { t } = useTranslation();
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, -180]);
 
@@ -39,14 +41,14 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}>
-            Producción Audiovisual · Madrid
+            {t("hero.label")}
           </HeroLabel>
 
           <HeroTitle
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-            Tu visión, nuestra producción.
+            {t("hero.title")}
           </HeroTitle>
 
           <HeroTagline
@@ -54,7 +56,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.9 } as never}>
-            Branded Content · Videomarketing · Corporativos · Streaming
+            {t("hero.tagline")}
           </HeroTagline>
 
           <HeroCTA
@@ -63,7 +65,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: 1.1 } as never}>
-            Hablemos de tu proyecto
+            {t("hero.cta")}
             <FaArrowRight size={15} />
           </HeroCTA>
         </HeroContent>
@@ -74,7 +76,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8 }}
         onClick={() => scrollToSection("#servicios")}>
-        <span>Scroll</span>
+        <span>{t("hero.scroll")}</span>
         <FaChevronDown size={16} />
       </ScrollIndicator>
     </HeroSection>

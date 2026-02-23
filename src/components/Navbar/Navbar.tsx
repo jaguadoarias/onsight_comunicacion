@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaPaperPlane } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import { useScrollProgress } from "../../hooks/useScrollProgress";
+import LanguageSelector from "./LanguageSelector";
 import {
   Nav,
   ProgressLine,
@@ -16,13 +18,6 @@ import {
   MobileNavLink,
 } from "./Navbar.styles";
 
-const navItems = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Proyectos", href: "#portfolio" },
-];
-
 const mobileMenuVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.3 } },
@@ -35,10 +30,18 @@ const mobileItemVariants = {
 };
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const { progress, scrolled } = useScrollProgress();
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  const navItems = [
+    { label: t("nav.home"), href: "#inicio" },
+    { label: t("nav.services"), href: "#servicios" },
+    { label: t("nav.about"), href: "#nosotros" },
+    { label: t("nav.projects"), href: "#portfolio" },
+  ];
 
   useEffect(() => {
     const el = document.documentElement;
@@ -89,6 +92,7 @@ export default function Navbar() {
               {item.label}
             </NavLink>
           ))}
+          <LanguageSelector />
           <ContactBtn
             href="#contacto"
             onClick={(e) => {
@@ -96,13 +100,13 @@ export default function Navbar() {
               handleNavClick("#contacto");
             }}>
             <FaPaperPlane size={13} />
-            Contacto
+            {t("nav.contact")}
           </ContactBtn>
         </NavLinks>
 
         <HamburgerBtn
           onClick={() => setMenuOpen((o) => !o)}
-          aria-label="Toggle menu">
+          aria-label={t("nav.toggleMenu")}>
           <HamburgerLine $open={menuOpen} $index={0} />
           <HamburgerLine $open={menuOpen} $index={1} />
           <HamburgerLine $open={menuOpen} $index={2} />
@@ -158,8 +162,9 @@ export default function Navbar() {
                   gap: "0.5rem",
                 }}>
                 <FaPaperPlane size={24} />
-                Contacto
+                {t("nav.contact")}
               </MobileNavLink>
+              <LanguageSelector />
             </motion.div>
           </MobileMenu>
         )}

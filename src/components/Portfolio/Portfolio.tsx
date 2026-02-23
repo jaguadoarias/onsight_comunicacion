@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import type { VideoData } from '../../types/youtube'
 import { useYouTube } from '../../hooks/useYouTube'
 import { staggerContainerVariants } from '../../styles/animations'
@@ -17,6 +18,7 @@ import { fadeUpVariants } from '../../styles/animations'
 const HIGHLIGHTED_VIDEO_IDS = ["zvf-nKO9Kg8", "oRWjKBQ1aTs", "ejkZF6HN9kM"];
 
 export default function Portfolio() {
+  const { t } = useTranslation()
   const { videos, loading, error, refetch } = useYouTube({ videoIds: HIGHLIGHTED_VIDEO_IDS })
   const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null)
 
@@ -24,14 +26,14 @@ export default function Portfolio() {
     <PortfolioSection id="portfolio">
       <PortfolioContainer>
         <SectionHeader>
-          <SectionLabel>Canal YouTube</SectionLabel>
+          <SectionLabel>{t("portfolio.label")}</SectionLabel>
           <SectionTitle
             variants={fadeUpVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            Nuestros Proyectos
+            {t("portfolio.title")}
           </SectionTitle>
           <SectionSubtitle
             variants={fadeUpVariants}
@@ -39,7 +41,7 @@ export default function Portfolio() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            Producciones audiovisuales que hablan por sí solas
+            {t("portfolio.subtitle")}
           </SectionSubtitle>
         </SectionHeader>
 
@@ -57,8 +59,8 @@ export default function Portfolio() {
           </VideoGrid>
         ) : error && videos.length === 0 ? (
           <ErrorState>
-            <p>No se pudieron cargar los vídeos.</p>
-            <button onClick={refetch}>Reintentar</button>
+            <p>{t("portfolio.error")}</p>
+            <button onClick={refetch}>{t("portfolio.retry")}</button>
           </ErrorState>
         ) : (
           <VideoGrid
@@ -79,7 +81,7 @@ export default function Portfolio() {
 
         <ViewAllWrapper>
           <ViewAllLink as={Link} to="/trabajos">
-            Ver todos los proyectos
+            {t("portfolio.viewAll")}
             <FaArrowRight size={13} />
           </ViewAllLink>
         </ViewAllWrapper>

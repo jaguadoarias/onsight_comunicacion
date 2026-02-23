@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { fadeUpVariants } from "../../styles/animations";
 import {
   ClientsSection,
@@ -21,18 +22,19 @@ const clients = [
 ];
 
 export default function Clients() {
+  const { t } = useTranslation();
   const doubled = [...clients, ...clients];
 
   return (
     <ClientsSection id="clientes">
       <ClientsContainer>
-        <SectionLabel>Han confiado en nosotros</SectionLabel>
+        <SectionLabel>{t("clients.label")}</SectionLabel>
         <SectionTitle
           variants={fadeUpVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}>
-          Nuestros Clientes
+          {t("clients.title")}
         </SectionTitle>
       </ClientsContainer>
 

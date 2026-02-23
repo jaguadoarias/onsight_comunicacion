@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   staggerContainerVariants,
   cardVariants,
@@ -23,24 +24,25 @@ import { services } from "../../data/services";
 
 export default function Services() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <ServicesSection id="servicios">
       <SectionHeader>
-        <SectionLabel>Lo que hacemos</SectionLabel>
+        <SectionLabel>{t("services.label")}</SectionLabel>
         <SectionTitle
           variants={fadeUpVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}>
-          Nuestros Servicios
+          {t("services.title")}
         </SectionTitle>
         <SectionSubtitle
           variants={fadeUpVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}>
-          Producción audiovisual integral adaptada a las necesidades de tu marca
+          {t("services.subtitle")}
         </SectionSubtitle>
       </SectionHeader>
 
@@ -68,10 +70,10 @@ export default function Services() {
               <CardContent>
                 <CardTag>
                   <Icon />
-                  {service.tagline}
+                  {t(`services.${service.id}.tagline`, service.tagline)}
                 </CardTag>
-                <CardTitle>{service.title}</CardTitle>
-                <CardDescription>{service.description}</CardDescription>
+                <CardTitle>{t(`services.${service.id}.title`, service.title)}</CardTitle>
+                <CardDescription>{t(`services.${service.id}.description`, service.description)}</CardDescription>
               </CardContent>
             </ServiceCard>
           );

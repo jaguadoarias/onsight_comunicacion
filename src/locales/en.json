@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "label": "Audiovisual Production · Madrid",
+    "title": "Your vision, our production.",
+    "tagline": "Branded Content · Video Marketing · Corporate · Streaming",
+    "cta": "Let's talk about your project",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "label": "Who we are",
+    "title": "We bring your vision to life",
+    "p1": "At <1>OnSight Comunicación</1> we are a passionate team of audiovisual professionals based in Madrid. We specialize in transforming ideas into memorable visual experiences that connect brands with people.",
+    "p2": "Since our founding, we have collaborated with companies across all sectors, bringing creativity, technique, and commitment to every project. We believe every story deserves to be told in a unique and powerful way.",
+    "creativity": "Creativity",
+    "quality": "Quality",
+    "commitment": "Commitment"
+  },
+  "services": {
+    "label": "What we do",
+    "title": "Our Services",
+    "subtitle": "Comprehensive audiovisual production tailored to your brand's needs",
+    "branded": {
+      "title": "Branded Content",
+      "tagline": "Storytelling",
+      "description": "We create original narratives that link emotions with your brand. Stories that connect, convince, and stay in your audience's memory.",
+      "fullDescription": "Branded Content is the most powerful way to connect with your audience because it doesn't interrupt — it seduces. We create audiovisual pieces that tell your brand's story in an authentic, emotional, and memorable way. From brand short films to social media content series, we develop creative concepts that reflect your values and resonate with your target audience.",
+      "features": [
+        "Creative concept and script development",
+        "High-quality audiovisual production",
+        "Post-production and cinematic color grading",
+        "Multi-platform adaptation (YouTube, Instagram, LinkedIn)",
+        "Distribution strategy and content planning",
+        "Impact metrics and results analysis"
+      ]
+    },
+    "streaming": {
+      "title": "Events & Streaming",
+      "tagline": "Live Events",
+      "description": "We produce and broadcast your events in real time with the highest technical quality. From organization to global broadcast, we take your event beyond its capacity.",
+      "fullDescription": "A well-produced event transcends its physical space. We handle the comprehensive production of your in-person events and their live broadcast: from technical and logistical planning to simultaneous streaming across multiple platforms. Congresses, conferences, product launches, corporate galas, and webinars with the image and sound quality your brand deserves. Streaming amplifies the impact of every event, reaching unlimited audiences anywhere in the world.",
+      "features": [
+        "Full production of in-person and hybrid events",
+        "Live multi-camera broadcast with director",
+        "Simultaneous streaming to YouTube, LinkedIn, and custom platforms",
+        "Real-time graphics and lower thirds design and management",
+        "Technical and logistical event coordination",
+        "Event recording and editing for subsequent distribution"
+      ]
+    },
+    "corporativos": {
+      "title": "Corporate Videos",
+      "tagline": "Brand Image",
+      "description": "We reflect the values and identity of your company with the highest quality audiovisual productions. Your best business card.",
+      "fullDescription": "Corporate video is the most effective tool for conveying the culture, values, and purpose of your company. We produce institutional pieces that build trust with clients, partners, and investors: from company videos to product presentations, executive interviews, and internal process reports. Cinematic quality in service of your corporate image.",
+      "features": [
+        "Institutional and company videos",
+        "Product and service presentations",
+        "Corporate interviews and testimonials",
+        "Event and convention reports",
+        "Onboarding and internal training videos",
+        "Investor pieces and audiovisual pitch decks"
+      ]
+    },
+    "videomarketing": {
+      "title": "Funnels & Video Marketing",
+      "tagline": "Video that Sells",
+      "description": "We produce the videos your funnel needs at every stage: from the ad that captures attention to the VSL that closes the sale. Strategic video in service of your conversion funnel.",
+      "fullDescription": "Video is the most powerful asset within a web sales funnel. We produce specific pieces for each funnel phase: acquisition ads that generate qualified traffic, offer presentation videos for landing pages, VSL (Video Sales Letters) that argue and convert, and testimonials that eliminate objections. Each piece is designed with a clear objective within your digital sales process, ready to integrate into your landing page or funnel.",
+      "features": [
+        "VSL (Video Sales Letter) for sales pages",
+        "Offer presentation videos for landing pages",
+        "Acquisition ads (Meta Ads, Google Ads, TikTok Ads)",
+        "Testimonial and case study videos",
+        "Follow-up pieces for email sequences",
+        "A/B testing of creatives to optimize conversion"
+      ]
+    },
+    "webs": {
+      "title": "Websites & Hosting",
+      "tagline": "Digital Conversion",
+      "description": "We design and develop websites, sales landing pages, and conversion funnels that turn visits into customers. Every element is designed to guide the user towards action and maximize your results.",
+      "fullDescription": "A beautiful website that doesn't convert is money poorly invested. We design and develop result-oriented websites and conversion funnels: lead capture pages, sales landings, online stores, and corporate websites. We combine user-centered UX/UI design with conversion strategy so that every visit counts. Development in modern technologies with optimal performance and SEO positioning.",
+      "features": [
+        "Conversion-oriented UX/UI design",
+        "Web development in React, Next.js or WordPress",
+        "Sales landings and lead capture pages",
+        "Integrated email marketing funnels",
+        "CRM and automation tool integration",
+        "SEO optimization and performance (Core Web Vitals)"
+      ]
+    },
+    "creadores-hub": {
+      "title": "Creators Hub",
+      "tagline": "Your Creator Studio",
+      "description": "The professional studio and team you need to take your content to the next level. Recording, editing, and strategy for creators who want to stand out.",
+      "fullDescription": "We know what a content creator needs to stand out: professional equipment, the right space, and a team that understands your style and audience. At Creators Hub we put our fully-equipped studio, high-end cameras, cinematic lighting, and all production and post-production support at your disposal so you only have to focus on creating. Whether you're a YouTuber, Instagrammer, podcaster, or TikToker, we transform your ideas into pieces that hook, grow, and monetize. From long-form YouTube videos to weekly content packs for Instagram and TikTok, we produce with you and for you.",
+      "features": [
+        "Studio rental with technical equipment included",
+        "Multi-camera recording for YouTube and podcasts",
+        "Production of Reels, TikToks, and vertical content",
+        "Editing and assembly with custom graphics",
+        "Thumbnail and cover design",
+        "Monthly content packs for social media"
+      ]
+    }
+  },
+  "portfolio": {
+    "label": "YouTube Channel",
+    "title": "Our Projects",
+    "subtitle": "Audiovisual productions that speak for themselves",
+    "viewAll": "View all projects",
+    "error": "Could not load the videos.",
+    "retry": "Retry"
+  },
+  "clients": {
+    "label": "They have trusted us",
+    "title": "Our Clients"
+  },
+  "contact": {
+    "label": "Tell us about your project",
+    "title": "Let's talk",
+    "subtitle": "We are ready to bring your next audiovisual production to life",
+    "infoTitle": "Contact information",
+    "infoText": "We are based in Madrid and work with clients from all over Spain and abroad. Tell us about your project and we will get back to you within 24 hours.",
+    "location": "Madrid, Spain",
+    "nameLabel": "Name *",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email *",
+    "emailPlaceholder": "you@email.com",
+    "messageLabel": "Message *",
+    "messagePlaceholder": "Tell us about your project, goals, and any relevant details...",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "nameRequired": "Name is required",
+    "emailInvalid": "Please enter a valid email",
+    "messageMinLength": "Message must be at least 20 characters",
+    "successTitle": "Message sent!",
+    "successText": "Thank you for contacting us. We will reply within 24 hours.",
+    "serverError": "There was a problem sending your message. Please try again."
+  },
+  "footer": {
+    "copyright": "© {{year}} OnSight Comunicación · Madrid, Spain",
+    "legalNotice": "Legal Notice",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookies"
+  },
+  "servicioPage": {
+    "back": "← All services",
+    "requestQuote": "Request a quote",
+    "descriptionLabel": "Description",
+    "descriptionTitle": "What does it consist of?",
+    "includesLabel": "Includes",
+    "includesTitle": "What you get",
+    "ctaTitle": "Ready to get started?",
+    "ctaText": "Tell us about your project and we'll put together a personalized proposal with no commitment.",
+    "ctaBtn": "Let's talk about your project",
+    "otherServices": "Other services"
+  },
+  "trabajos": {
+    "back": "← Latest projects",
+    "title": "All our projects",
+    "subtitle": "The complete archive of OnSight Comunicación audiovisual productions, ordered by date.",
+    "error": "Could not load the videos.",
+    "retry": "Retry",
+    "noMore": "No more projects available."
+  }
+}

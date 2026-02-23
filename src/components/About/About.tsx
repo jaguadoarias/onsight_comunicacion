@@ -1,3 +1,4 @@
+import { Trans, useTranslation } from "react-i18next";
 import {
   slideInLeftVariants,
   slideInRightVariants,
@@ -17,6 +18,7 @@ import {
 } from "./About.styles";
 
 export default function About() {
+  const { t } = useTranslation();
 
   return (
     <AboutSection id="nosotros">
@@ -39,25 +41,17 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}>
-          <SectionLabel>Quiénes somos</SectionLabel>
-          <AboutTitle>Hacemos que tu visión cobre vida</AboutTitle>
+          <SectionLabel>{t("about.label")}</SectionLabel>
+          <AboutTitle>{t("about.title")}</AboutTitle>
           <AboutText>
-            En <strong>OnSight Comunicación</strong> somos un equipo apasionado
-            de profesionales del audiovisual con sede en Madrid. Nos
-            especializamos en transformar ideas en experiencias visuales
-            memorables que conectan marcas con personas.
+            <Trans i18nKey="about.p1" components={[<span />, <strong />]} />
           </AboutText>
-          <AboutText>
-            Desde nuestra fundación, hemos colaborado con empresas de todos los
-            sectores, aportando creatividad, técnica y compromiso en cada
-            proyecto. Creemos que cada historia merece ser contada de forma
-            única y poderosa.
-          </AboutText>
+          <AboutText>{t("about.p2")}</AboutText>
 
           <ValuePills>
-            <Pill>Creatividad</Pill>
-            <Pill>Calidad</Pill>
-            <Pill>Compromiso</Pill>
+            <Pill>{t("about.creativity")}</Pill>
+            <Pill>{t("about.quality")}</Pill>
+            <Pill>{t("about.commitment")}</Pill>
           </ValuePills>
         </TextContent>
       </AboutContainer>

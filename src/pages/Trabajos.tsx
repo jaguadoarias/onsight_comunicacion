@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import type { VideoData } from "../types/youtube";
 import { useYouTube } from "../hooks/useYouTube";
 import { staggerContainerVariants, fadeUpVariants } from "../styles/animations";
@@ -84,6 +85,7 @@ const GridSection = styled.section`
 const SKELETON_COUNT = 6;
 
 export default function Trabajos() {
+  const { t } = useTranslation();
   const { videos, loading, error, refetch } = useYouTube({ maxResults: 50 });
   const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null);
 
@@ -99,17 +101,16 @@ export default function Trabajos() {
       <Navbar />
 
       <PageHero>
-        <BackLink to="/#portfolio">← Últimos proyectos</BackLink>
+        <BackLink to="/#portfolio">{t("trabajos.back")}</BackLink>
         <PageTitle variants={fadeUpVariants} initial="hidden" animate="visible">
-          Todos nuestros proyectos
+          {t("trabajos.title")}
         </PageTitle>
         <PageSubtitle
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.1 } as object}>
-          El archivo completo de producciones audiovisuales de OnSight
-          Comunicación, ordenado por fecha.
+          {t("trabajos.subtitle")}
         </PageSubtitle>
       </PageHero>
 
@@ -128,12 +129,12 @@ export default function Trabajos() {
           </VideoGrid>
         ) : error && remainingVideos.length === 0 ? (
           <ErrorState>
-            <p>No se pudieron cargar los vídeos.</p>
-            <button onClick={refetch}>Reintentar</button>
+            <p>{t("trabajos.error")}</p>
+            <button onClick={refetch}>{t("trabajos.retry")}</button>
           </ErrorState>
         ) : remainingVideos.length === 0 ? (
           <ErrorState>
-            <p>No hay más proyectos disponibles.</p>
+            <p>{t("trabajos.noMore")}</p>
           </ErrorState>
         ) : (
           <VideoGrid

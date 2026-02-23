@@ -1,5 +1,6 @@
 import { FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   FooterEl,
   FooterTop,
@@ -11,6 +12,7 @@ import {
 } from "./Footer.styles";
 
 export default function Footer() {
+  const { t } = useTranslation();
 
   return (
     <FooterEl>
@@ -46,12 +48,12 @@ export default function Footer() {
 
       <FooterBottom>
         <span>
-          © {new Date().getFullYear()} OnSight Comunicación · Madrid, España
+          {t("footer.copyright", { year: new Date().getFullYear() })}
         </span>
         <LegalLinks>
-          <Link to="/legal/aviso-legal">Aviso Legal</Link>
-          <Link to="/legal/privacidad">Política de Privacidad</Link>
-          <Link to="/legal/cookies">Cookies</Link>
+          <Link to="/legal/aviso-legal">{t("footer.legalNotice")}</Link>
+          <Link to="/legal/privacidad">{t("footer.privacy")}</Link>
+          <Link to="/legal/cookies">{t("footer.cookies")}</Link>
         </LegalLinks>
       </FooterBottom>
     </FooterEl>

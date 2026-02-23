@@ -1,5 +1,6 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   FaMapMarkerAlt,
   FaEnvelope,
@@ -48,23 +49,10 @@ interface FormFields {
 
 type FormErrors = Partial<Record<keyof FormFields, string>>;
 
-function validate(fields: FormFields): FormErrors {
-  const errors: FormErrors = {};
-  if (!fields.name || fields.name.trim().length < 2) {
-    errors.name = "El nombre es obligatorio";
-  }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
-    errors.email = "Introduce un email válido";
-  }
-  if (!fields.message || fields.message.trim().length < 20) {
-    errors.message = "El mensaje debe tener al menos 20 caracteres";
-  }
-  return errors;
-}
-
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string;
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [fields, setFields] = useState<FormFields>({
     name: "",
     email: "",
@@ -76,6 +64,20 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState("");
+
+  const validate = (f: FormFields): FormErrors => {
+    const errs: FormErrors = {};
+    if (!f.name || f.name.trim().length < 2) {
+      errs.name = t("contact.nameRequired");
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) {
+      errs.email = t("contact.emailInvalid");
+    }
+    if (!f.message || f.message.trim().length < 20) {
+      errs.message = t("contact.messageMinLength");
+    }
+    return errs;
+  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
@@ -121,9 +123,7 @@ export default function Contact() {
       }
       setSuccess(true);
     } catch {
-      setServerError(
-        "Hubo un problema al enviar el mensaje. Inténtalo de nuevo.",
-      );
+      setServerError(t("contact.serverError"));
     } finally {
       setLoading(false);
     }
@@ -133,20 +133,20 @@ export default function Contact() {
     <ContactSection id="contacto">
       <Container>
         <SectionHeader>
-          <SectionLabel>Cuéntanos tu proyecto</SectionLabel>
+          <SectionLabel>{t("contact.label")}</SectionLabel>
           <SectionTitle
             variants={fadeUpVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}>
-            Hablemos
+            {t("contact.title")}
           </SectionTitle>
           <SectionSubtitle
             variants={fadeUpVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}>
-            Estamos listos para hacer realidad tu próxima producción audiovisual
+            {t("contact.subtitle")}
           </SectionSubtitle>
         </SectionHeader>
 
@@ -156,18 +156,14 @@ export default function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}>
-            <InfoTitle>Información de contacto</InfoTitle>
-            <InfoText>
-              Nos encontramos en Madrid y trabajamos con clientes de toda España
-              y el extranjero. Cuéntanos tu proyecto y te responderemos en 24
-              horas.
-            </InfoText>
+            <InfoTitle>{t("contact.infoTitle")}</InfoTitle>
+            <InfoText>{t("contact.infoText")}</InfoText>
 
             <InfoItem>
               <InfoIcon>
                 <FaMapMarkerAlt />
               </InfoIcon>
-              <InfoDetail>Madrid, España</InfoDetail>
+              <InfoDetail>{t("contact.location")}</InfoDetail>
             </InfoItem>
 
             <InfoItem>
@@ -206,22 +202,19 @@ export default function Contact() {
                   <div className="check">
                     <FaCheck />
                   </div>
-                  <h3>¡Mensaje enviado!</h3>
-                  <p>
-                    Gracias por contactarnos. Te responderemos en menos de 24
-                    horas.
-                  </p>
+                  <h3>{t("contact.successTitle")}</h3>
+                  <p>{t("contact.successText")}</p>
                 </SuccessPanel>
               ) : (
                 <Form key="form" onSubmit={handleSubmit} noValidate>
                   <FormRow>
                     <FormGroup>
-                      <Label htmlFor="name">Nombre *</Label>
+                      <Label htmlFor="name">{t("contact.nameLabel")}</Label>
                       <Input
                         id="name"
                         name="name"
                         type="text"
-                        placeholder="Tu nombre"
+                        placeholder={t("contact.namePlaceholder")}
                         value={fields.name}
                         onChange={handleChange}
                         $error={!!errors.name}
@@ -231,12 +224,12 @@ export default function Contact() {
                     </FormGroup>
 
                     <FormGroup>
-                      <Label htmlFor="email">Email *</Label>
+                      <Label htmlFor="email">{t("contact.emailLabel")}</Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="tu@email.com"
+                        placeholder={t("contact.emailPlaceholder")}
                         value={fields.email}
                         onChange={handleChange}
                         $error={!!errors.email}
@@ -247,11 +240,11 @@ export default function Contact() {
                   </FormRow>
 
                   <FormGroup>
-                    <Label htmlFor="message">Mensaje *</Label>
+                    <Label htmlFor="message">{t("contact.messageLabel")}</Label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Cuéntanos tu proyecto, objetivos y cualquier detalle relevante..."
+                      placeholder={t("contact.messagePlaceholder")}
                       value={fields.message}
                       onChange={handleChange}
                       $error={!!errors.message}
@@ -278,7 +271,7 @@ export default function Contact() {
                       gap: "0.5rem",
                     }}>
                     <FaPaperPlane size={14} />
-                    {loading ? "Enviando..." : "Enviar mensaje"}
+                    {loading ? t("contact.submitting") : t("contact.submit")}
                   </SubmitBtn>
                 </Form>
               )}

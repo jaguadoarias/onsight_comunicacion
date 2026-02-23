@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaPaperPlane, FaArrowRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import type { Service } from "../data/services";
@@ -291,12 +292,16 @@ export default function ServicioPage({
   service,
   allServices,
 }: ServicioPageProps) {
+  const { t } = useTranslation();
   const Icon = service.icon;
   const others = allServices.filter((s) => s.id !== service.id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [service.id]);
+
+  const features = t(`services.${service.id}.features`, { returnObjects: true }) as string[];
+  const featureList = Array.isArray(features) ? features : service.features;
 
   return (
     <PageWrapper>
@@ -306,27 +311,27 @@ export default function ServicioPage({
         <HeroBg $image={service.image} />
         <HeroOverlay />
         <HeroContent>
-          <BackLink to="/#servicios">← Todos los servicios</BackLink>
+          <BackLink to="/#servicios">{t("servicioPage.back")}</BackLink>
           <div>
             <TagLine
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}>
               <Icon size={12} />
-              {service.tagline}
+              {t(`services.${service.id}.tagline`, service.tagline)}
             </TagLine>
           </div>
           <HeroTitle
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}>
-            {service.title}
+            {t(`services.${service.id}.title`, service.title)}
           </HeroTitle>
           <HeroDescription
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}>
-            {service.description}
+            {t(`services.${service.id}.description`, service.description)}
           </HeroDescription>
           <CtaButton
             href="/#contacto"
@@ -334,7 +339,7 @@ export default function ServicioPage({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}>
             <FaPaperPlane size={13} />
-            Solicitar presupuesto
+            {t("servicioPage.requestQuote")}
           </CtaButton>
         </HeroContent>
       </Hero>
@@ -345,9 +350,11 @@ export default function ServicioPage({
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}>
-          <SectionLabel>Descripción</SectionLabel>
-          <SectionTitle>¿En qué consiste?</SectionTitle>
-          <SectionText>{service.fullDescription}</SectionText>
+          <SectionLabel>{t("servicioPage.descriptionLabel")}</SectionLabel>
+          <SectionTitle>{t("servicioPage.descriptionTitle")}</SectionTitle>
+          <SectionText>
+            {t(`services.${service.id}.fullDescription`, service.fullDescription)}
+          </SectionText>
         </ContentBlock>
 
         <ContentBlock
@@ -355,10 +362,10 @@ export default function ServicioPage({
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}>
-          <SectionLabel>Incluye</SectionLabel>
-          <SectionTitle>Qué obtienes</SectionTitle>
+          <SectionLabel>{t("servicioPage.includesLabel")}</SectionLabel>
+          <SectionTitle>{t("servicioPage.includesTitle")}</SectionTitle>
           <FeaturesList>
-            {service.features.map((feature, i) => (
+            {featureList.map((feature, i) => (
               <FeatureItem
                 key={i}
                 initial={{ opacity: 0, x: 10 }}
@@ -373,23 +380,20 @@ export default function ServicioPage({
       </ContentSection>
 
       <CtaBanner>
-        <h2>¿Listo para empezar?</h2>
-        <p>
-          Cuéntanos tu proyecto y te preparamos una propuesta personalizada sin
-          compromiso.
-        </p>
+        <h2>{t("servicioPage.ctaTitle")}</h2>
+        <p>{t("servicioPage.ctaText")}</p>
         <CtaBannerBtn href="/#contacto">
           <FaPaperPlane size={13} />
-          Hablemos de tu proyecto
+          {t("servicioPage.ctaBtn")}
         </CtaBannerBtn>
       </CtaBanner>
 
       <OtherServices>
-        <OtherServicesTitle>Otros servicios</OtherServicesTitle>
+        <OtherServicesTitle>{t("servicioPage.otherServices")}</OtherServicesTitle>
         <OtherServicesGrid>
           {others.map((s) => (
             <OtherServiceLink key={s.id} to={`/servicios/${s.slug}`}>
-              {s.title}
+              {t(`services.${s.id}.title`, s.title)}
               <FaArrowRight size={11} />
             </OtherServiceLink>
           ))}
