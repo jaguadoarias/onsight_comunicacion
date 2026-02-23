@@ -167,23 +167,27 @@ export default function Contact() {
               <InfoIcon>
                 <FaMapMarkerAlt />
               </InfoIcon>
-              <InfoDetail>
-                Madrid, España
-              </InfoDetail>
+              <InfoDetail>Madrid, España</InfoDetail>
             </InfoItem>
 
             <InfoItem>
               <InfoIcon>
                 <FaEnvelope />
               </InfoIcon>
-              <InfoDetail><a href="mailto:onsightcomunicacion@gmail.com">onsightcomunicacion@gmail.com</a></InfoDetail>
+              <InfoDetail>
+                <a href="mailto:onsightcomunicacion@gmail.com">
+                  onsightcomunicacion@gmail.com
+                </a>
+              </InfoDetail>
             </InfoItem>
 
             <InfoItem>
               <InfoIcon>
                 <FaPhone />
               </InfoIcon>
-              <InfoDetail>699 43 44 71</InfoDetail>
+              <InfoDetail>
+                <a href="tel:+699 43 44 71">699 43 44 71</a>
+              </InfoDetail>
             </InfoItem>
           </InfoCard>
 
