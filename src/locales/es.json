@@ -83,10 +83,10 @@
       ]
     },
     "webs": {
-      "title": "Webs & Hosting",
+      "title": "Web & Hosting",
       "tagline": "Conversión Digital",
-      "description": "Diseñamos y desarrollamos webs, landings de venta y embudos de conversión que transforman visitas en clientes.",
-      "fullDescription": "Una web bonita que no convierte es dinero mal invertido. Diseñamos y desarrollamos sitios web y embudos de conversión orientados a resultados: páginas de captación, landings de venta, tiendas online y webs corporativas. Combinamos diseño UX/UI centrado en el usuario con estrategia de conversión para que cada visita cuente. Desarrollo en tecnologías modernas con rendimiento óptimo y posicionamiento SEO.",
+      "description": "Diseñamos, desarrollamos y alojamos webs, landings de venta y embudos de conversión que transforman visitas en clientes.",
+      "fullDescription": "Diseño, desarrollo, alojamiento y registro de dominio. Todo incluido, todo gestionado por nosotros. Creamos tu presencia online de principio a fin: webs corporativas, landings de captación y embudos de venta completos, siempre con foco en resultados. Que carguen rápido, posicionen bien y conviertan visitas en clientes.",
       "features": [
         "Diseño UX/UI orientado a conversión",
         "Desarrollo web en React, Next.js o WordPress",
