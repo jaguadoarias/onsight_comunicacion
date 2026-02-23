@@ -1,6 +1,6 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { FaChevronDown, FaArrowRight } from "react-icons/fa";
-import { wordContainerVariants, fadeUpVariants } from "../../styles/animations";
+import { fadeUpVariants } from "../../styles/animations";
 import {
   HeroSection,
   VideoBackground,
@@ -59,10 +59,6 @@ export default function Hero() {
 
           <HeroCTA
             href="#contacto"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#contacto");
-            }}
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"

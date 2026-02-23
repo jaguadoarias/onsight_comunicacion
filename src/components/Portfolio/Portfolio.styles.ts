@@ -74,7 +74,7 @@ export const PlayBtn = styled.div`
   transition: all ${({ theme }) => theme.transition.slow};
 `;
 
-export const VideoCardWrapper = styled(motion.div)`
+export const VideoCardWrapper = styled(motion.article)`
   position: relative;
   border-radius: ${({ theme }) => theme.radius.md};
   corner-shape: squircle;
@@ -82,6 +82,9 @@ export const VideoCardWrapper = styled(motion.div)`
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.colors.glassBorder};
   background: ${({ theme }) => theme.colors.bgCard};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition:
     border-color ${({ theme }) => theme.transition.normal},
     box-shadow ${({ theme }) => theme.transition.normal};
@@ -130,6 +133,7 @@ export const ThumbOverlay = styled.div`
 
 export const CardMeta = styled.div`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  flex: 1;
   display: flex;
   align-items: center;
 `;
@@ -138,7 +142,6 @@ export const VideoTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
   color: ${({ theme }) => theme.colors.white};
-  margin-bottom: 0.4rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

@@ -58,7 +58,6 @@ export default function About() {
             <Pill>Creatividad</Pill>
             <Pill>Calidad</Pill>
             <Pill>Compromiso</Pill>
-            <Pill>Innovación</Pill>
           </ValuePills>
         </TextContent>
       </AboutContainer>
