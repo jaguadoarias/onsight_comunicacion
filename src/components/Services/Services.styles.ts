@@ -148,7 +148,7 @@ export const CardTitle = styled.h3`
 `;
 
 export const CardDescription = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-size: ${({ theme }) => theme.fontSize.md};
   color: ${({ theme }) => theme.colors.textMuted};
   line-height: 1.6;
 `;
