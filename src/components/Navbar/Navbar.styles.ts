@@ -15,8 +15,8 @@ export const Nav = styled.header<{ $scrolled: boolean; $menuOpen: boolean }>`
     $scrolled && !$menuOpen ? "rgba(10, 10, 10, 0.92)" : "transparent"};
   /* backdrop-filter: ${({ $scrolled, $menuOpen }) =>
     $scrolled && !$menuOpen ? "blur(12px)" : "none"}; */
-  border-bottom: ${({ $scrolled, $menuOpen, theme }) =>
-    $scrolled && !$menuOpen ? `1px solid ${theme.colors.glassBorder}` : "none"};
+  /* border-bottom: ${({ $scrolled, $menuOpen, theme }) =>
+    $scrolled && !$menuOpen ? `1px solid ${theme.colors.glassBorder}` : "none"}; */
   transition: all ${({ theme }) => theme.transition.slow};
   z-index: 1060;
 
@@ -36,7 +36,7 @@ export const ProgressLine = styled.div<{ $progress: number; $menuOpen: boolean }
     ${({ theme }) => theme.colors.secondary},
     ${({ theme }) => theme.colors.primaryBright}
   );
-  transition: width 0.1s linear, opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   opacity: ${({ $menuOpen }) => ($menuOpen ? 0 : 1)};
 `
 
