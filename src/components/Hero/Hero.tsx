@@ -1,24 +1,18 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { FaChevronDown, FaArrowRight } from "react-icons/fa";
-import {
-  wordContainerVariants,
-  letterVariants,
-  fadeUpVariants,
-} from "../../styles/animations";
+import { wordContainerVariants, fadeUpVariants } from "../../styles/animations";
 import {
   HeroSection,
   VideoBackground,
   HeroContent,
   HeroLabel,
   HeroTitle,
-  TitleWord,
   HeroTagline,
   HeroCTA,
   ScrollIndicator,
 } from "./Hero.styles";
 
 const HERO_VIDEO_ID = "Ku7dAXrmxsA";
-const titleWords = ["Tu", "visión,", "nuestra", "producción."];
 
 export default function Hero() {
   const { scrollY } = useScroll();
@@ -48,21 +42,11 @@ export default function Hero() {
             Producción Audiovisual · Madrid
           </HeroLabel>
 
-          <HeroTitle>
-            <motion.span
-              variants={wordContainerVariants}
-              initial="hidden"
-              animate="visible"
-              style={{ display: "block" }}>
-              {titleWords.map((word, i) => (
-                <TitleWord
-                  key={i}
-                  variants={letterVariants}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-                  {word}
-                </TitleWord>
-              ))}
-            </motion.span>
+          <HeroTitle
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+            Tu visión, nuestra producción.
           </HeroTitle>
 
           <HeroTagline

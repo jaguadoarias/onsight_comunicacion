@@ -42,10 +42,10 @@ export default function About() {
           <SectionLabel>Quiénes somos</SectionLabel>
           <AboutTitle>Hacemos que tu visión cobre vida</AboutTitle>
           <AboutText>
-            En OnSight Comunicación somos un equipo apasionado de profesionales
-            del audiovisual con sede en Madrid. Nos especializamos en
-            transformar ideas en experiencias visuales memorables que conectan
-            marcas con personas.
+            En <strong>OnSight Comunicación</strong> somos un equipo apasionado
+            de profesionales del audiovisual con sede en Madrid. Nos
+            especializamos en transformar ideas en experiencias visuales
+            memorables que conectan marcas con personas.
           </AboutText>
           <AboutText>
             Desde nuestra fundación, hemos colaborado con empresas de todos los

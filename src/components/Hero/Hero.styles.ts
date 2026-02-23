@@ -57,7 +57,7 @@ export const HeroLabel = styled(motion.span)`
   margin-bottom: ${({ theme }) => theme.spacing.md};
 `;
 
-export const HeroTitle = styled.h1`
+export const HeroTitle = styled(motion.h1)`
   font-family: ${({ theme }) => theme.font.display};
   font-size: clamp(2.5rem, 8vw, ${({ theme }) => theme.fontSize["4xl"]});
   font-weight: ${({ theme }) => theme.fontWeight.black};
@@ -65,11 +65,6 @@ export const HeroTitle = styled.h1`
   color: ${({ theme }) => theme.colors.white};
   margin-bottom: ${({ theme }) => theme.spacing.md};
   overflow: hidden;
-`;
-
-export const TitleWord = styled(motion.span)`
-  display: inline-block;
-  margin-right: 0.25em;
 `;
 
 export const HeroTagline = styled(motion.p)`
