@@ -89,9 +89,6 @@ export default function Trabajos() {
   const { videos, loading, error, refetch } = useYouTube({ maxResults: 50 });
   const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null);
 
-  // Skip the 3 most recent (shown in the Portfolio section on home)
-  const remainingVideos = videos.slice(3);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -127,12 +124,12 @@ export default function Trabajos() {
               </SkeletonCard>
             ))}
           </VideoGrid>
-        ) : error && remainingVideos.length === 0 ? (
+        ) : error ? (
           <ErrorState>
             <p>{t("trabajos.error")}</p>
             <button onClick={refetch}>{t("trabajos.retry")}</button>
           </ErrorState>
-        ) : remainingVideos.length === 0 ? (
+        ) : videos.length === 0 ? (
           <ErrorState>
             <p>{t("trabajos.noMore")}</p>
           </ErrorState>
@@ -141,7 +138,7 @@ export default function Trabajos() {
             variants={staggerContainerVariants}
             initial="hidden"
             animate="visible">
-            {remainingVideos.map(
+            {videos.map(
               (video) =>
                 video.id !== "Ku7dAXrmxsA" && (
                   <VideoCard

@@ -164,7 +164,7 @@
     "otherServices": "Other services"
   },
   "trabajos": {
-    "back": "← Latest projects",
+    "back": "← Back to home",
     "title": "All our projects",
     "subtitle": "The complete archive of OnSight Comunicación audiovisual productions, ordered by date.",
     "error": "Could not load the videos.",
