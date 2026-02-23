@@ -170,5 +170,12 @@
     "error": "Could not load the videos.",
     "retry": "Retry",
     "noMore": "No more projects available."
+  },
+  "notFound": {
+    "label": "Page not found",
+    "title": "This page doesn't exist",
+    "description": "The URL you're looking for doesn't exist or has been moved. Go back to the homepage to find what you need.",
+    "backHome": "← Back to home",
+    "viewProjects": "View projects"
   }
 }

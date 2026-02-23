@@ -170,5 +170,12 @@
     "error": "No se pudieron cargar los vídeos.",
     "retry": "Reintentar",
     "noMore": "No hay más proyectos disponibles."
+  },
+  "notFound": {
+    "label": "Página no encontrada",
+    "title": "Esta página no existe",
+    "description": "La URL que buscas no existe o ha sido movida. Vuelve al inicio para encontrar lo que necesitas.",
+    "backHome": "← Volver al inicio",
+    "viewProjects": "Ver proyectos"
   }
 }

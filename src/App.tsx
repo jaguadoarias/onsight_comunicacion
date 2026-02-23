@@ -14,6 +14,7 @@ import VideosCorporativos from './pages/servicios/VideosCorporativos'
 import Streaming from './pages/servicios/Streaming'
 import WebsFunnels from './pages/servicios/WebsFunnels'
 import CreadoresHub from './pages/servicios/CreadoresHub'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -23,19 +24,16 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/trabajos" element={<Trabajos />} />
-
-          {/* Servicios */}
           <Route path="/servicios/branded-content" element={<BrandedContent />} />
           <Route path="/servicios/videomarketing" element={<Videomarketing />} />
           <Route path="/servicios/corporativos" element={<VideosCorporativos />} />
           <Route path="/servicios/streaming" element={<Streaming />} />
           <Route path="/servicios/webs-funnels" element={<WebsFunnels />} />
           <Route path="/servicios/creadores-hub" element={<CreadoresHub />} />
-
-          {/* Legal */}
           <Route path="/legal/aviso-legal" element={<AvisoLegal />} />
           <Route path="/legal/privacidad" element={<PoliticaPrivacidad />} />
           <Route path="/legal/cookies" element={<PoliticaCookies />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
