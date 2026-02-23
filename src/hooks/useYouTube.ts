@@ -21,6 +21,7 @@ const FALLBACK_IDS = [
 
 interface UseYouTubeOptions {
   maxResults?: number
+  videoIds?: string[]
 }
 
 interface UseYouTubeReturn {
@@ -42,13 +43,15 @@ function buildFallback(ids: string[], max: number): VideoData[] {
   }))
 }
 
-export function useYouTube({ maxResults = 12 }: UseYouTubeOptions = {}): UseYouTubeReturn {
+export function useYouTube({ maxResults = 12, videoIds }: UseYouTubeOptions = {}): UseYouTubeReturn {
   const [videos,  setVideos]  = useState<VideoData[]>([])
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState<string | null>(null)
   const [trigger, setTrigger] = useState(0)
 
   const refetch = useCallback(() => setTrigger(n => n + 1), [])
+
+  const videoIdsKey = videoIds?.join(',') ?? ''
 
   useEffect(() => {
     let cancelled = false
@@ -59,12 +62,44 @@ export function useYouTube({ maxResults = 12 }: UseYouTubeOptions = {}): UseYouT
 
       if (!API_KEY || !CHANNEL_ID) {
         setError('YouTube API key o Channel ID no configurados.')
-        setVideos(buildFallback(FALLBACK_IDS, maxResults))
+        const fallbackIds = videoIds ?? FALLBACK_IDS
+        setVideos(buildFallback(fallbackIds, videoIds ? fallbackIds.length : maxResults))
         setLoading(false)
         return
       }
 
       try {
+        if (videoIds && videoIds.length > 0) {
+          // Fetch specific videos by ID directly
+          const res = await fetch(
+            `${BASE_URL}/videos?part=snippet,statistics&id=${videoIds.join(',')}&key=${API_KEY}`
+          )
+          if (!res.ok) throw new Error(`Videos fetch failed: ${res.status}`)
+          const data: YouTubeVideosResponse = await res.json()
+          const items = data.items ?? []
+          if (items.length === 0) throw new Error('No videos found')
+
+          const normalized: VideoData[] = items.map(item => {
+            const s = item.snippet!
+            const thumb = s.thumbnails.maxres ?? s.thumbnails.high ?? s.thumbnails.medium
+            return {
+              id:           item.id,
+              title:        s.title,
+              description:  s.description,
+              publishedAt:  new Date(s.publishedAt),
+              thumbnailUrl: thumb.url,
+              viewCount:    parseInt(item.statistics?.viewCount ?? '0', 10),
+              likeCount:    parseInt(item.statistics?.likeCount  ?? '0', 10),
+            }
+          })
+
+          if (!cancelled) {
+            setVideos(normalized)
+            setLoading(false)
+          }
+          return
+        }
+
         // Step 1: Get uploads playlist ID
         const channelRes = await fetch(
           `${BASE_URL}/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`
@@ -85,9 +120,9 @@ export function useYouTube({ maxResults = 12 }: UseYouTubeOptions = {}): UseYouT
         if (items.length === 0) throw new Error('No videos found')
 
         // Step 3: Batch fetch statistics
-        const videoIds = items.map(item => item.snippet.resourceId.videoId).join(',')
+        const ids = items.map(item => item.snippet.resourceId.videoId).join(',')
         const statsRes = await fetch(
-          `${BASE_URL}/videos?part=statistics&id=${videoIds}&key=${API_KEY}`
+          `${BASE_URL}/videos?part=statistics&id=${ids}&key=${API_KEY}`
         )
         if (!statsRes.ok) throw new Error(`Statistics fetch failed: ${statsRes.status}`)
         const statsData: YouTubeVideosResponse = await statsRes.json()
@@ -118,7 +153,8 @@ export function useYouTube({ maxResults = 12 }: UseYouTubeOptions = {}): UseYouT
         if (!cancelled) {
           const message = err instanceof Error ? err.message : 'Unknown error'
           setError(message)
-          setVideos(buildFallback(FALLBACK_IDS, maxResults))
+          const fallbackIds = videoIds ?? FALLBACK_IDS
+          setVideos(buildFallback(fallbackIds, videoIds ? fallbackIds.length : maxResults))
           setLoading(false)
         }
       }
@@ -126,7 +162,7 @@ export function useYouTube({ maxResults = 12 }: UseYouTubeOptions = {}): UseYouT
 
     fetchVideos()
     return () => { cancelled = true }
-  }, [maxResults, trigger])
+  }, [maxResults, videoIdsKey, trigger])
 
   return { videos, loading, error, refetch }
 }

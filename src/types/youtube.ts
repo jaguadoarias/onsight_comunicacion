@@ -42,8 +42,21 @@ export interface YouTubeVideoStatistics {
   commentCount: string
 }
 
+export interface YouTubeVideoSnippet {
+  title: string
+  description: string
+  publishedAt: string
+  thumbnails: {
+    default: { url: string; width: number; height: number }
+    medium:  { url: string; width: number; height: number }
+    high:    { url: string; width: number; height: number }
+    maxres?: { url: string; width: number; height: number }
+  }
+}
+
 export interface YouTubeVideoItem {
   id: string
+  snippet?: YouTubeVideoSnippet
   statistics: YouTubeVideoStatistics
 }
 

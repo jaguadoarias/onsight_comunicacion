@@ -14,8 +14,10 @@ import {
 } from './Portfolio.styles'
 import { fadeUpVariants } from '../../styles/animations'
 
+const HIGHLIGHTED_VIDEO_IDS = ["zvf-nKO9Kg8", "oRWjKBQ1aTs", "ejkZF6HN9kM"];
+
 export default function Portfolio() {
-  const { videos, loading, error, refetch } = useYouTube({ maxResults: 3 })
+  const { videos, loading, error, refetch } = useYouTube({ videoIds: HIGHLIGHTED_VIDEO_IDS })
   const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null)
 
   return (
