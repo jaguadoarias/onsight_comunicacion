@@ -1,32 +1,34 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { FaPaperPlane, FaArrowRight } from 'react-icons/fa'
-import Navbar from '../components/Navbar/Navbar'
-import Footer from '../components/Footer/Footer'
-import type { Service } from '../data/services'
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { FaPaperPlane, FaArrowRight } from "react-icons/fa";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
+import type { Service } from "../data/services";
 
 const PageWrapper = styled.div`
   background: ${({ theme }) => theme.colors.bg};
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-`
+`;
 
 const Hero = styled.div<{ $image: string }>`
   position: relative;
   min-height: 70vh;
   display: flex;
   align-items: flex-end;
-  padding: 0 ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.xxl};
+  padding: 0 ${({ theme }) => theme.spacing.xl}
+    ${({ theme }) => theme.spacing.xxl};
   overflow: hidden;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     min-height: 60vh;
-    padding: 0 ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
+    padding: ${({ theme }) =>
+      `${theme.spacing.xxl} ${theme.spacing.md} ${theme.spacing.xl}`};
   }
-`
+`;
 
 const HeroBg = styled.div<{ $image: string }>`
   position: absolute;
@@ -35,7 +37,7 @@ const HeroBg = styled.div<{ $image: string }>`
   background-size: cover;
   background-position: center;
   z-index: 0;
-`
+`;
 
 const HeroOverlay = styled.div`
   position: absolute;
@@ -46,7 +48,7 @@ const HeroOverlay = styled.div`
     rgba(10, 10, 10, 0.95) 100%
   );
   z-index: 1;
-`
+`;
 
 const HeroContent = styled.div`
   position: relative;
@@ -54,7 +56,7 @@ const HeroContent = styled.div`
   max-width: ${({ theme }) => theme.layout.maxWidth};
   margin: 0 auto;
   width: 100%;
-`
+`;
 
 const BackLink = styled(Link)`
   display: inline-flex;
@@ -69,7 +71,7 @@ const BackLink = styled(Link)`
   &:hover {
     color: ${({ theme }) => theme.colors.white};
   }
-`
+`;
 
 const TagLine = styled(motion.span)`
   display: inline-flex;
@@ -83,14 +85,14 @@ const TagLine = styled(motion.span)`
   padding: 0.25rem 0.75rem;
   border-radius: ${({ theme }) => theme.radius.lg};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
-`
+`;
 
 const HeroTitle = styled(motion.h1)`
-  font-size: clamp(2.5rem, 6vw, ${({ theme }) => theme.fontSize['4xl']});
+  font-size: clamp(2.5rem, 6vw, ${({ theme }) => theme.fontSize["4xl"]});
   color: ${({ theme }) => theme.colors.white};
   line-height: 1.1;
   margin-bottom: ${({ theme }) => theme.spacing.md};
-`
+`;
 
 const HeroDescription = styled(motion.p)`
   font-size: ${({ theme }) => theme.fontSize.md};
@@ -98,7 +100,7 @@ const HeroDescription = styled(motion.p)`
   max-width: 640px;
   line-height: 1.7;
   margin-bottom: ${({ theme }) => theme.spacing.lg};
-`
+`;
 
 const CtaButton = styled(motion.a)`
   display: inline-flex;
@@ -117,14 +119,15 @@ const CtaButton = styled(motion.a)`
   &:hover {
     background: ${({ theme }) => theme.colors.redHover};
   }
-`
+`;
 
 const ContentSection = styled.section`
   flex: 1;
   max-width: ${({ theme }) => theme.layout.maxWidth};
   margin: 0 auto;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing.xxl} ${({ theme }) => theme.spacing.xl};
+  padding: ${({ theme }) => theme.spacing.xxl}
+    ${({ theme }) => theme.spacing.xl};
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: ${({ theme }) => theme.spacing.xxl};
@@ -135,11 +138,12 @@ const ContentSection = styled.section`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.md};
+    padding: ${({ theme }) => theme.spacing.xl}
+      ${({ theme }) => theme.spacing.md};
   }
-`
+`;
 
-const ContentBlock = styled(motion.div)``
+const ContentBlock = styled(motion.div)``;
 
 const SectionLabel = styled.span`
   display: inline-block;
@@ -149,19 +153,19 @@ const SectionLabel = styled.span`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.primary};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
-`
+`;
 
 const SectionTitle = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize['2xl']};
+  font-size: ${({ theme }) => theme.fontSize["2xl"]};
   color: ${({ theme }) => theme.colors.white};
   margin-bottom: ${({ theme }) => theme.spacing.md};
-`
+`;
 
 const SectionText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.colors.textMuted};
   line-height: 1.8;
-`
+`;
 
 const FeaturesList = styled.ul`
   list-style: none;
@@ -170,7 +174,7 @@ const FeaturesList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-`
+`;
 
 const FeatureItem = styled(motion.li)`
   display: flex;
@@ -181,7 +185,7 @@ const FeatureItem = styled(motion.li)`
   line-height: 1.6;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     width: 6px;
     height: 6px;
@@ -190,7 +194,7 @@ const FeatureItem = styled(motion.li)`
     margin-top: 0.55rem;
     flex-shrink: 0;
   }
-`
+`;
 
 const CtaBanner = styled.div`
   background: ${({ theme }) => theme.colors.glass};
@@ -208,7 +212,7 @@ const CtaBanner = styled.div`
   }
 
   h2 {
-    font-size: ${({ theme }) => theme.fontSize['2xl']};
+    font-size: ${({ theme }) => theme.fontSize["2xl"]};
     color: ${({ theme }) => theme.colors.white};
     margin-bottom: ${({ theme }) => theme.spacing.sm};
   }
@@ -218,7 +222,7 @@ const CtaBanner = styled.div`
     color: ${({ theme }) => theme.colors.textMuted};
     margin-bottom: ${({ theme }) => theme.spacing.lg};
   }
-`
+`;
 
 const CtaBannerBtn = styled.a`
   display: inline-flex;
@@ -236,7 +240,7 @@ const CtaBannerBtn = styled.a`
   &:hover {
     background: ${({ theme }) => theme.colors.redHover};
   }
-`
+`;
 
 const OtherServices = styled.div`
   max-width: ${({ theme }) => theme.layout.maxWidth};
@@ -246,19 +250,19 @@ const OtherServices = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 0 ${({ theme }) => theme.spacing.md};
   }
-`
+`;
 
 const OtherServicesTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.white};
   margin-bottom: ${({ theme }) => theme.spacing.md};
-`
+`;
 
 const OtherServicesGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-`
+`;
 
 const OtherServiceLink = styled(Link)`
   display: inline-flex;
@@ -276,20 +280,23 @@ const OtherServiceLink = styled(Link)`
     color: ${({ theme }) => theme.colors.white};
     border-color: rgba(255, 255, 255, 0.3);
   }
-`
+`;
 
 interface ServicioPageProps {
-  service: Service
-  allServices: Service[]
+  service: Service;
+  allServices: Service[];
 }
 
-export default function ServicioPage({ service, allServices }: ServicioPageProps) {
-  const Icon = service.icon
-  const others = allServices.filter((s) => s.id !== service.id)
+export default function ServicioPage({
+  service,
+  allServices,
+}: ServicioPageProps) {
+  const Icon = service.icon;
+  const others = allServices.filter((s) => s.id !== service.id);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [service.id])
+    window.scrollTo(0, 0);
+  }, [service.id]);
 
   return (
     <PageWrapper>
@@ -304,8 +311,7 @@ export default function ServicioPage({ service, allServices }: ServicioPageProps
             <TagLine
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            >
+              transition={{ duration: 0.4 }}>
               <Icon size={12} />
               {service.tagline}
             </TagLine>
@@ -313,23 +319,20 @@ export default function ServicioPage({ service, allServices }: ServicioPageProps
           <HeroTitle
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+            transition={{ duration: 0.5, delay: 0.1 }}>
             {service.title}
           </HeroTitle>
           <HeroDescription
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+            transition={{ duration: 0.5, delay: 0.2 }}>
             {service.description}
           </HeroDescription>
           <CtaButton
             href="/#contacto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
+            transition={{ duration: 0.5, delay: 0.3 }}>
             <FaPaperPlane size={13} />
             Solicitar presupuesto
           </CtaButton>
@@ -341,8 +344,7 @@ export default function ServicioPage({ service, allServices }: ServicioPageProps
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-        >
+          transition={{ duration: 0.5 }}>
           <SectionLabel>Descripción</SectionLabel>
           <SectionTitle>¿En qué consiste?</SectionTitle>
           <SectionText>{service.fullDescription}</SectionText>
@@ -352,8 +354,7 @@ export default function ServicioPage({ service, allServices }: ServicioPageProps
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-        >
+          transition={{ duration: 0.5 }}>
           <SectionLabel>Incluye</SectionLabel>
           <SectionTitle>Qué obtienes</SectionTitle>
           <FeaturesList>
@@ -363,8 +364,7 @@ export default function ServicioPage({ service, allServices }: ServicioPageProps
                 initial={{ opacity: 0, x: 10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.07 }}
-              >
+                transition={{ duration: 0.3, delay: i * 0.07 }}>
                 {feature}
               </FeatureItem>
             ))}
@@ -374,7 +374,10 @@ export default function ServicioPage({ service, allServices }: ServicioPageProps
 
       <CtaBanner>
         <h2>¿Listo para empezar?</h2>
-        <p>Cuéntanos tu proyecto y te preparamos una propuesta personalizada sin compromiso.</p>
+        <p>
+          Cuéntanos tu proyecto y te preparamos una propuesta personalizada sin
+          compromiso.
+        </p>
         <CtaBannerBtn href="/#contacto">
           <FaPaperPlane size={13} />
           Hablemos de tu proyecto
@@ -395,5 +398,5 @@ export default function ServicioPage({ service, allServices }: ServicioPageProps
 
       <Footer />
     </PageWrapper>
-  )
+  );
 }

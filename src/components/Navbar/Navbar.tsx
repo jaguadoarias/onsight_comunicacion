@@ -152,12 +152,12 @@ export default function Navbar() {
                   handleNavClick("#contacto");
                 }}
                 style={{
-                  color: "var(--gold, #C9A84C)",
+                  color: "var(--primary, #DB2D2D)",
                   display: "flex",
                   alignItems: "center",
                   gap: "0.5rem",
                 }}>
-                <FaPaperPlane size={14} />
+                <FaPaperPlane size={24} />
                 Contacto
               </MobileNavLink>
             </motion.div>
