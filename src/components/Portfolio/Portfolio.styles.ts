@@ -159,7 +159,7 @@ export const ViewAllLink = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
   color: ${({ theme }) => theme.colors.white};
   text-decoration: none;

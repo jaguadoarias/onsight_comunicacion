@@ -82,7 +82,7 @@ export default function Portfolio() {
         <ViewAllWrapper>
           <ViewAllLink as={Link} to="/trabajos">
             {t("portfolio.viewAll")}
-            <FaArrowRight size={13} />
+            <FaArrowRight size={14} />
           </ViewAllLink>
         </ViewAllWrapper>
       </PortfolioContainer>
