@@ -1,7 +1,6 @@
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import { FaChevronDown, FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { fadeUpVariants } from "../../styles/animations";
 import {
   HeroSection,
   VideoBackground,
@@ -34,42 +33,38 @@ export default function Hero() {
           allowFullScreen
         />
       </VideoBackground>
-      <motion.div
-        style={{ y, width: "100%", display: "flex", justifyContent: "center" }}>
-        <HeroContent>
-          <HeroLabel
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}>
-            {t("hero.label")}
-          </HeroLabel>
 
-          <HeroTitle
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-            {t("hero.title")}
-          </HeroTitle>
+      <HeroContent>
+        <HeroLabel
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}>
+          {t("hero.label")}
+        </HeroLabel>
 
-          <HeroTagline
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.9 } as never}>
-            {t("hero.tagline")}
-          </HeroTagline>
+        <HeroTitle
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+          {t("hero.title")}
+        </HeroTitle>
 
-          <HeroCTA
-            href="#contacto"
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 1.1 } as never}>
-            {t("hero.cta")}
-            <FaArrowRight size={15} />
-          </HeroCTA>
-        </HeroContent>
-      </motion.div>
+        <HeroTagline
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+          {t("hero.tagline")}
+        </HeroTagline>
+
+        <HeroCTA
+          href="#contacto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+          {t("hero.cta")}
+          <FaArrowRight size={15} />
+        </HeroCTA>
+      </HeroContent>
 
       <ScrollIndicator
         initial={{ opacity: 0 }}
