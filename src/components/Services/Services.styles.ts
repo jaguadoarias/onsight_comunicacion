@@ -85,6 +85,14 @@ export const ServiceCard = styled(motion.div)<{ $featured?: boolean }>`
     border-color ${({ theme }) => theme.transition.normal},
     box-shadow ${({ theme }) => theme.transition.normal};
 
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(10, 10, 10, 0.65);
+    z-index: 1;
+  }
+
   ${({ $featured }) =>
     $featured &&
     `
@@ -122,7 +130,7 @@ export const CardOverlay = styled.div`
   background: linear-gradient(
     to bottom,
     rgba(10, 10, 10, 0.2) 0%,
-    rgba(10, 10, 10, 0.85) 100%
+    rgba(10, 10, 10, 0.95) 100%
   );
   z-index: 1;
 `;

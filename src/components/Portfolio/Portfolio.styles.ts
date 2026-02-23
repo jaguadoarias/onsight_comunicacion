@@ -130,6 +130,8 @@ export const ThumbOverlay = styled.div`
 
 export const CardMeta = styled.div`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  display: flex;
+  align-items: center;
 `;
 
 export const VideoTitle = styled.h3`

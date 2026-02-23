@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const HeroSection = styled.section`
   position: relative;
@@ -9,8 +9,16 @@ export const HeroSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  id: inicio;
-`
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(10, 10, 10, .85);
+    z-index: 1;
+  }
+`;
 
 export const VideoBackground = styled.div`
   position: absolute;
@@ -29,19 +37,7 @@ export const VideoBackground = styled.div`
     transform: translate(-50%, -50%);
     pointer-events: none;
   }
-`
-
-export const Overlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 10, 10, 0.3) 0%,
-    rgba(10, 10, 10, 0.5) 40%,
-    rgba(10, 10, 10, 0.85) 100%
-  );
-  z-index: 1;
-`
+`;
 
 export const HeroContent = styled(motion.div)`
   position: relative;
@@ -49,7 +45,7 @@ export const HeroContent = styled(motion.div)`
   text-align: center;
   padding: ${({ theme }) => theme.spacing.md};
   max-width: 900px;
-`
+`;
 
 export const HeroLabel = styled(motion.span)`
   display: inline-block;
@@ -59,22 +55,22 @@ export const HeroLabel = styled(motion.span)`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.secondaryBright};
   margin-bottom: ${({ theme }) => theme.spacing.md};
-`
+`;
 
 export const HeroTitle = styled.h1`
   font-family: ${({ theme }) => theme.font.display};
-  font-size: clamp(2.5rem, 8vw, ${({ theme }) => theme.fontSize['4xl']});
+  font-size: clamp(2.5rem, 8vw, ${({ theme }) => theme.fontSize["4xl"]});
   font-weight: ${({ theme }) => theme.fontWeight.black};
   line-height: 1.1;
   color: ${({ theme }) => theme.colors.white};
   margin-bottom: ${({ theme }) => theme.spacing.md};
   overflow: hidden;
-`
+`;
 
 export const TitleWord = styled(motion.span)`
   display: inline-block;
   margin-right: 0.25em;
-`
+`;
 
 export const HeroTagline = styled(motion.p)`
   font-size: clamp(1rem, 2.5vw, ${({ theme }) => theme.fontSize.md});
@@ -82,7 +78,7 @@ export const HeroTagline = styled(motion.p)`
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: ${({ theme }) => theme.spacing.xl};
-`
+`;
 
 export const HeroCTA = styled(motion.a)`
   display: inline-flex;
@@ -143,7 +139,12 @@ export const ScrollIndicator = styled(motion.div)`
   }
 
   @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(10px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
   }
-`
+`;
