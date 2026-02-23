@@ -1,4 +1,3 @@
-import { useScroll, useTransform } from "framer-motion";
 import { FaChevronDown, FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import {
@@ -16,8 +15,6 @@ const HERO_VIDEO_ID = "Ku7dAXrmxsA";
 
 export default function Hero() {
   const { t } = useTranslation();
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 600], [0, -180]);
 
   const scrollToSection = (href: string) => {
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
