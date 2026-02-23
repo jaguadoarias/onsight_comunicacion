@@ -24,6 +24,18 @@ const Hero = styled.div<{ $image: string }>`
     ${({ theme }) => theme.spacing.xxl};
   overflow: hidden;
 
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.5) 0%,
+      rgba(10, 10, 10, 1) 100%
+    );
+    z-index: 1;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     min-height: 60vh;
     padding: ${({ theme }) =>
@@ -38,17 +50,6 @@ const HeroBg = styled.div<{ $image: string }>`
   background-size: cover;
   background-position: center;
   z-index: 0;
-`;
-
-const HeroOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 10, 10, 0.3) 0%,
-    rgba(10, 10, 10, 0.95) 100%
-  );
-  z-index: 1;
 `;
 
 const HeroContent = styled.div`
@@ -235,7 +236,8 @@ const CtaBannerBtn = styled.a`
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
   text-decoration: none;
   padding: 0.85rem 2rem;
-  border-radius: ${({ theme }) => theme.radius.full};
+  border-radius: ${({ theme }) => theme.radius.md};
+  corner-shape: squircle;
   transition: background ${({ theme }) => theme.transition.fast};
 
   &:hover {
@@ -300,7 +302,9 @@ export default function ServicioPage({
     window.scrollTo(0, 0);
   }, [service.id]);
 
-  const features = t(`services.${service.id}.features`, { returnObjects: true }) as string[];
+  const features = t(`services.${service.id}.features`, {
+    returnObjects: true,
+  }) as string[];
   const featureList = Array.isArray(features) ? features : service.features;
 
   return (
@@ -309,7 +313,6 @@ export default function ServicioPage({
 
       <Hero $image={service.image}>
         <HeroBg $image={service.image} />
-        <HeroOverlay />
         <HeroContent>
           <BackLink to="/#servicios">{t("servicioPage.back")}</BackLink>
           <div>
@@ -353,7 +356,10 @@ export default function ServicioPage({
           <SectionLabel>{t("servicioPage.descriptionLabel")}</SectionLabel>
           <SectionTitle>{t("servicioPage.descriptionTitle")}</SectionTitle>
           <SectionText>
-            {t(`services.${service.id}.fullDescription`, service.fullDescription)}
+            {t(
+              `services.${service.id}.fullDescription`,
+              service.fullDescription,
+            )}
           </SectionText>
         </ContentBlock>
 
@@ -389,7 +395,9 @@ export default function ServicioPage({
       </CtaBanner>
 
       <OtherServices>
-        <OtherServicesTitle>{t("servicioPage.otherServices")}</OtherServicesTitle>
+        <OtherServicesTitle>
+          {t("servicioPage.otherServices")}
+        </OtherServicesTitle>
         <OtherServicesGrid>
           {others.map((s) => (
             <OtherServiceLink key={s.id} to={`/servicios/${s.slug}`}>
