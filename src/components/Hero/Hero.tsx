@@ -68,7 +68,6 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8 }}
         onClick={() => scrollToSection("#servicios")}>
-        <span>{t("hero.scroll")}</span>
         <FaChevronDown size={16} />
       </ScrollIndicator>
     </HeroSection>
