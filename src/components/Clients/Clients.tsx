@@ -17,6 +17,7 @@ const clients = [
   { name: "ECOCLIMB", logo: "/images/clientes/ecoclimb.png" },
   { name: "ADMIRAL", logo: "/images/clientes/admiral.png" },
   { name: "A3MEDIA", logo: "/images/clientes/a3media.png" },
+  { name: "Cadena SER", logo: "/images/clientes/cadena_ser.png" },
   { name: "Telemadrid", logo: "/images/clientes/telemadrid.png" },
   { name: "The Line", logo: "/images/clientes/the_line.png" },
 ];

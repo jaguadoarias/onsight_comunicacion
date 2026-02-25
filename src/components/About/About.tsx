@@ -44,7 +44,7 @@ export default function About() {
           <SectionLabel>{t("about.label")}</SectionLabel>
           <AboutTitle>{t("about.title")}</AboutTitle>
           <AboutText>
-            <Trans i18nKey="about.p1" components={[<span />, <strong />]} />
+            <Trans i18nKey="about.p1" components={[<strong />]} />
           </AboutText>
           <AboutText>{t("about.p2")}</AboutText>
 

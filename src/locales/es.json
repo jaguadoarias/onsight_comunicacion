@@ -16,7 +16,7 @@
   "about": {
     "label": "Quiénes somos",
     "title": "Hacemos que tu visión cobre vida",
-    "p1": "En <1>OnSight Comunicación</1> somos un equipo apasionado de profesionales del audiovisual con sede en Madrid. Nos especializamos en transformar ideas en experiencias visuales memorables que conectan marcas con personas.",
+    "p1": "En <0>OnSight Comunicación</0> somos un equipo apasionado de profesionales del audiovisual con sede en Madrid. Nos especializamos en transformar ideas en experiencias visuales memorables que conectan marcas con personas.",
     "p2": "Desde nuestra fundación, hemos colaborado con empresas de todos los sectores, aportando creatividad, técnica y compromiso en cada proyecto. Creemos que cada historia merece ser contada de forma única y poderosa.",
     "creativity": "Creatividad",
     "quality": "Calidad",
@@ -34,7 +34,7 @@
       "features": [
         "Desarrollo de concepto creativo y guión",
         "Producción audiovisual de alta calidad",
-        "Postproducción y etalonaje cinematográfico",
+        "Postproducción y etalonaje",
         "Adaptación multiplataforma (YouTube, Instagram, LinkedIn)",
         "Estrategia de distribución y contenido",
         "Métricas de impacto y análisis de resultados"

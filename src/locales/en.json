@@ -16,7 +16,7 @@
   "about": {
     "label": "Who we are",
     "title": "We bring your vision to life",
-    "p1": "At <1>OnSight Comunicación</1> we are a passionate team of audiovisual professionals based in Madrid. We specialize in transforming ideas into memorable visual experiences that connect brands with people.",
+    "p1": "At <0>OnSight Comunicación</0> we are a passionate team of audiovisual professionals based in Madrid. We specialize in transforming ideas into memorable visual experiences that connect brands with people.",
     "p2": "Since our founding, we have collaborated with companies across all sectors, bringing creativity, technique, and commitment to every project. We believe every story deserves to be told in a unique and powerful way.",
     "creativity": "Creativity",
     "quality": "Quality",
@@ -34,7 +34,7 @@
       "features": [
         "Creative concept and script development",
         "High-quality audiovisual production",
-        "Post-production and cinematic color grading",
+        "Post-production and color grading",
         "Multi-platform adaptation (YouTube, Instagram, LinkedIn)",
         "Distribution strategy and content planning",
         "Impact metrics and results analysis"
