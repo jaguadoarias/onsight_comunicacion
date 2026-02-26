@@ -5,7 +5,9 @@
     "about": "Nosotros",
     "projects": "Proyectos",
     "contact": "Contacto",
-    "toggleMenu": "Abrir menú"
+    "toggleMenu": "Abrir menú",
+    "logoAlt": "Logotipo Onsight Comunicación",
+    "mainNav": "Navegación principal"
   },
   "hero": {
     "label": "Producción Audiovisual",

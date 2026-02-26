@@ -77,10 +77,10 @@ export default function Navbar() {
             e.preventDefault();
             handleNavClick("#inicio");
           }}>
-          <img src="/images/logo.svg" alt="Logotipo Onsight Comunicación" />
+          <img src="/images/logo.svg" alt={t("nav.logoAlt")} />
         </Logo>
 
-        <NavLinks>
+        <NavLinks aria-label={t("nav.mainNav")}>
           {navItems.map((item) => (
             <NavLink
               key={item.href}

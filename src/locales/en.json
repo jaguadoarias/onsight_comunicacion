@@ -5,7 +5,9 @@
     "about": "About",
     "projects": "Projects",
     "contact": "Contact",
-    "toggleMenu": "Toggle menu"
+    "toggleMenu": "Toggle menu",
+    "logoAlt": "Onsight Comunicación logotype",
+    "mainNav": "Main navigation"
   },
   "hero": {
     "label": "Audiovisual Production",
