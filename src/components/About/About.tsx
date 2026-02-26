@@ -29,10 +29,10 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}>
           <MainImage>
-            <img src="/images/onsight_corporativos.jpg" alt="OnSight equipo" />
+            <img src="/images/onsight_corporativos.webp" alt={t("about.imgMainAlt")} />
           </MainImage>
           <SecondaryImage>
-            <img src="/images/onsight_making-of.jpg" alt="Making of" />
+            <img src="/images/onsight_making-of.webp" alt={t("about.imgSecondaryAlt")} />
           </SecondaryImage>
         </ImageStack>
 
