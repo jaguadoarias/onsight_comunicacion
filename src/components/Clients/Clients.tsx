@@ -44,7 +44,7 @@ export default function Clients() {
           {doubled.map((client, i) => (
             <ClientLogo key={i}>
               {client.logo ? (
-                <img src={client.logo} alt={client.name} />
+                <img src={client.logo} alt={client.name} loading="lazy" />
               ) : (
                 <ClientName>{client.name}</ClientName>
               )}
@@ -58,7 +58,7 @@ export default function Clients() {
           {doubled.map((client, i) => (
             <ClientLogo key={i}>
               {client.logo ? (
-                <img src={client.logo} alt={client.name} />
+                <img src={client.logo} alt={client.name} loading="lazy" />
               ) : (
                 <ClientName>{client.name}</ClientName>
               )}
