@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const HeroSection = styled.section`
   position: relative;
-  height: 100dvh;
+  height: 100svh;
   min-height: 600px;
   overflow: hidden;
   display: flex;
